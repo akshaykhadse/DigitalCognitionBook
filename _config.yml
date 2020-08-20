@@ -1,0 +1,36 @@
+theme: jekyll-theme-hydeout
+
+title: Digital Cognition
+description: An Incomplete Guide
+
+url: https://akshaykhadse.github.io
+baseurl: /DigitalCognitionBook
+
+collections:
+  sections:
+    output: false
+  chapters:
+    output: true
+  parts:
+    output: true
+  book:
+    output: true
+
+author: 
+  name: Akshay Khadse
+  url: https://twitter.com/akshayskhadse
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-gist
+
+github:
+  repo: https://github.com/akshaykhadse/DigitalCognitionBook
+
+sidebar_home_link:  true
+
+markdown: kramdown
+kramdown:
+  header_offset: 1
+  syntax_highlighter: rouge
+highlighter: rouge

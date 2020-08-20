@@ -1,0 +1,51 @@
+name: Books
+
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  Publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set permissions
+      run: |
+        echo "## Set permissions"
+
+        echo "# Changing permissions *.sh"
+        find . -type f -name '*.sh' -exec chmod a+x {} \;
+        echo "# Changing permissions *.py"
+        find . -type f -name '*.py' -exec chmod a+x {} \;
+
+        printf "\n\n"
+
+    - name: Set enviornment variables
+      run: ./_scripts/enviornment_vars.sh github
+
+    - name: Install LaTeX
+      run: ./_scripts/install_latex.sh
+
+    - name: Install pandoc
+      run: ./_scripts/install_pandoc.sh
+
+    - name: HTML to TEX
+      run: ./_scripts/html_to_tex.sh
+
+    - name: TEX to PDF
+      run: ./_scripts/tex_to_pdf.sh
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.PUBLISH_NAME }}
+        path: |
+          ./${{ env.BOOK_DIR }}/${{ env.PUBLISH_NAME }}.tex
+          ./${{ env.BOOK_DIR }}/${{ env.PUBLISH_NAME }}.pdf
+          ./${{ env.BOOK_DIR }}/${{ env.BOOK_HTML }}

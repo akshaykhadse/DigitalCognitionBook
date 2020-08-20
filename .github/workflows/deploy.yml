@@ -1,0 +1,43 @@
+name: Website
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set permissions
+      run: |
+        echo "## Set permissions"
+
+        echo "# Changing permissions *.sh"
+        find . -type f -name '*.sh' -exec chmod a+x {} \;
+        echo "# Changing permissions *.py"
+        find . -type f -name '*.py' -exec chmod a+x {} \;
+
+        printf "\n\n"
+
+    - name: Set enviornment variables
+      run: ./_scripts/enviornment_vars.sh github
+
+    - name: Setup Jekyll
+      run: ./_scripts/install_jekyll.sh
+
+    - name: Build
+      run: ./_scripts/build_site.sh
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site

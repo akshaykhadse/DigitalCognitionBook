@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<header>
+  <h1 class="page-title">Chapter {{ page.chapter }}: {{ page.title }}</h1>
+</header>
+<div class="content">
+  {{ content }}
+
+  {%- for section in site.sections -%}
+    {%- if section.chapter == page.chapter -%}
+      <h2><a name="ch{{ page.chapter }}-{{ section.title | remove:" " }}"></a>{{ section.title }}</h2>
+      {{ section.output }}
+    {%- endif -%}
+  {%- endfor -%}
+
+</div>
