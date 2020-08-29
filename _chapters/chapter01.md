@@ -2,7 +2,7 @@
 part: A
 layout: chapter
 chapter: 01
-title: Architecture
+title: Data Description
 ---
 
-This chapter describes how this web publishing structure works.
+

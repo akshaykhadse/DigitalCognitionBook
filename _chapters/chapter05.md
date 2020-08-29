@@ -2,7 +2,7 @@
 part: A
 layout: chapter
 chapter: 01
-title: Random Variables
+title: Sampling
 ---
 
 
