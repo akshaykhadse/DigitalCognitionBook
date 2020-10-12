@@ -242,6 +242,11 @@ data \(\mathcal{D}\). This also known as Residual Sum of Squares (RSS).</p>
 <p>This error is used to find a least square solution to linear regression 
 problem.</p>
 <h3>Least Squares Solution</h3>
+<p><em>The following discussion relies on matrix calculus. If you are not comfortable 
+with matrix calculus, you may want to take a look at 
+<a href="https://atmos.washington.edu/~dennis/MatrixCalculus.pdf">this article</a> on the 
+subject.</em></p>
+
 <p>We can write the sum of squares error in matrix form as</p>
 
 <p>[E(f(\phi(x), w) = (y - \phi w)^T(y - \phi w)]</p>
@@ -268,6 +273,8 @@ definite, we set the first derivative to zero</p>
 <p>To obtain the solution</p>
 
 <p>[\hat{w} = (\phi^T \phi)^{-1} \phi^T y]</p>
+<h3>Geometric Interpretation of Least Squares Solution</h3>
+<p><img src="/DigitalCognitionBook/assets/images/geometric_interpretation.svg" alt="Geometric interpretation of least squares solution" /></p>
 <h3>Maximum Likelihood Estimate</h3>
 <p>Suresh tosses a coin 1000 times and he observes heads 400 times.</p>
 
