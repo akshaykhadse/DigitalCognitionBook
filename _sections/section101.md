@@ -2,6 +2,11 @@
 chapter: 10
 title: Least Squares Solution
 ---
+*The following discussion relies on matrix calculus. If you are not comfortable 
+with matrix calculus, you may want to take a look at 
+[this article](https://atmos.washington.edu/~dennis/MatrixCalculus.pdf) on the 
+subject.*
+
 We can write the sum of squares error in matrix form as
 
 $$E(f(\phi(x), w) = (y - \phi w)^T(y - \phi w)$$
