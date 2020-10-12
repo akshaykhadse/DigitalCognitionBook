@@ -119,7 +119,7 @@ attributes. The following section will formalize the linear regression problem
 for such cases.</p>
 <h3>Simple Linear Regression</h3>
 <p>Suppose we have a dataset \(\mathcal{D}\) which contains examples 
-\(&lt;x_1, y_1&gt;\), \(&lt;x_2, y_2&gt;\), \(&lt;x_3, y_3&gt;\), … \(&lt;x_m, y_m&gt;\) where \(m\) 
+\(&lt;x_1, y_1&gt;\), \(&lt;x_2, y_2&gt;\), \(&lt;x_3, y_3&gt;\), … \(&lt;x_n, y_n&gt;\) where \(m\) 
 is the total number of examples.</p>
 
 <p>Each \(x\) is an input (also known as independent variable). And each \(y\) is 
@@ -129,7 +129,7 @@ output (also known as dependent or target variable).</p>
 example where \(j\) is index to the dataset.</p>
 
 <p>Each \(x_i\) has \(p\) attributes \(\phi_1(x_i)\), \(\phi_2(x_i)\), …, 
-\(\phi_p(x_i)\). Then, we define a new \(m \times (p+1)\) matrix \(\phi\) as</p>
+\(\phi_p(x_i)\). Then, we define a new \(n \times (p+1)\) matrix \(\phi\) as</p>
 
 <p>[\phi = 
 \begin{bmatrix}
@@ -138,10 +138,10 @@ example where \(j\) is index to the dataset.</p>
 .<br />
 .<br />
 .<br />
-1 &amp; \phi_1(x_m) &amp; \phi_2(x_m) &amp; … &amp; \phi_p(x_m)<br />
+1 &amp; \phi_1(x_n) &amp; \phi_2(x_n) &amp; … &amp; \phi_p(x_n)<br />
 \end{bmatrix}]</p>
 
-<p>Let’s also define a \(m \times 1\) matrix \(y\) as</p>
+<p>Let’s also define a \(n \times 1\) matrix \(y\) as</p>
 
 <p>[y = 
 \begin{bmatrix}
@@ -150,7 +150,7 @@ y_2 <br />
 . <br />
 . <br />
 . <br />
-y_m
+y_n
 \end{bmatrix}]</p>
 
 <p>The general equation of linear regression model is</p>
@@ -192,8 +192,8 @@ w_p
 
 <p>[y = \phi(x) w]</p>
 
-<p>The \(y\) is linear combination of coloumns of matrix \(\phi\) because 
-\(i^th\) coloumn of \(\phi\) is multiplied by \(w_i\). But this does not mean 
+<p>The \(y\) is linear combination of columns of matrix \(\phi\) because 
+\(i^th\) column of \(\phi\) is multiplied by \(w_i\). But this does not mean 
 that linear regression is naievely linear. We can inject nonlinearities via 
 the features/basis functions \(\phi_i\)s. For example, we could have used a 
 function \(\phi(x_i) = x_i^2\) in the TV commercial example. To summarize, 
@@ -275,6 +275,218 @@ definite, we set the first derivative to zero</p>
 <p>[\hat{w} = (\phi^T \phi)^{-1} \phi^T y]</p>
 <h3>Geometric Interpretation of Least Squares Solution</h3>
 <p><img src="/DigitalCognitionBook/assets/images/geometric_interpretation.svg" alt="Geometric interpretation of least squares solution" /></p>
+
+<p>In the above figure, the \(\phi_1(x)\), \(\phi_2(x)\), …, \(\phi_p(x)\) are 
+the vectors corresponding to each column of \(\phi(x)\). The shaded blue 
+region is the hyperplane which contains the vectors \(\phi_1(x)\), 
+\(\phi_2(x)\), …, \(\phi_p(x)\). In other words, the shaded blue region is 
+the column space of \(\phi(x)\).</p>
+
+<p>The predicted values \(\hat{y}\) are given by</p>
+
+<p>[\hat{y} = \phi \hat{w}]</p>
+
+<p>\(\hat{y}\) is a linear combination of columns of \(\phi\), hence \(\hat{y}\) 
+lies in the same hyperplane as \(\phi_1(x)\), \(\phi_2(x)\), …, 
+\(\phi_p(x)\).</p>
+
+<p>\(y - \hat{y}\) is the vector difference of the estimated values 
+\(\hat{y}_i\)’s and the actual observations \(y_i\)’s. The maginitude of this 
+vector is given by</p>
+
+<p>[\lvert y - \hat{y} \rvert = \sum_{i = 1}^{n} (y_i - \hat{y}_i)^2]</p>
+
+<p>The maginitude of \(y - \hat{y}\) is same as the sum of squared error. This 
+maginitude will be minimum when the vector \(y - \hat{y}\) is perpendicular to 
+the hyperplane containing \(\phi_1(x)\), \(\phi_2(x)\), …, \(\phi_p(x)\). In 
+other words, the error will be minimum when \((y - \hat{y}) \perp \phi_1(x)\), 
+\((y - \hat{y}) \perp \phi_2(x)\), …, \((y - \hat{y}) \perp \phi_p(x)\). 
+This can be exressed in terms of dot product as:</p>
+
+<p>[(y - \hat{y})^T \phi_1(x)<br />
+(y - \hat{y})^T \phi_2(x)<br />
+. <br />
+. <br />
+. <br />
+(y - \hat{y})^T \phi_p(x)\]</p>
+
+<p>In matrix form,</p>
+
+<p>[(y - \hat{y})^T \phi = \bar{0}]</p>
+
+<p>Substituting value of \(\hat{y}\),</p>
+
+<p>[(y - \phi \hat{w})^T \phi = (\bar{0})^T<br />
+y^T \phi - \hat{w}^T \phi^T \phi = (\bar{0})^T<br />
+\phi^T y - \phi^T \phi \hat{w} = \bar{0}<br />
+\phi^T \phi \hat{w} = \phi^T y]</p>
+
+<p>Thus,</p>
+
+<p>[\hat{w} = (\phi^T \phi)^{-1} \phi^T y]</p>
+
+<p>This is same result which we obtained earlier.</p>
+
+<p>It is important to note that \(\phi^T \phi\) is invertible only when \(\phi\) 
+has full column rank.</p>
+<h3>Matrix Rank</h3>
+<p>A \(m \times n\) matrix has \(m\) rows, each containing \(n\) elements each. 
+Same matrix can also be viewed as \(n\) columns containing \(m\) elements each.</p>
+
+<p>The rank of a matrix is defined as maximum number of linearly independent rows 
+or columns of a matrix.</p>
+
+<p>Here, a row \(r_i\) is said to be linearly independent if it cannot be 
+obtained by a linear combination of any other rows. Linear combination is an 
+operation like \(a_1 r_1 + a_2 + r_2 + ...\) where \(a_j\)’s are scalar 
+constants. In other words, \(r_i\) is linearly independent if</p>
+
+<p>[r_i \neq \sum_{j \neq i}^{} a_j r_j]</p>
+
+<p>for any values of \(a_1\), \(a_2\), …,\(a_{i-1}\), \(a_{i+1}\), …</p>
+
+<p>Same goes for columns as well. A column \(c_i\) is said to be linearly 
+independent if it cannot be obtained by a linear combination of any other 
+columns.</p>
+
+<p>For an \(m \times n\) matrix,</p>
+<ul>
+  <li>If \(m \lt n\), then the maximum rank of the matrix is \(m\).</li>
+  <li>If \(m \gt n\), then the maximum rank of the matrix is \(n\).
+The rank of a matrix would be zero only if the matrix had no elements. If a 
+matrix had even one element, its minimum rank would be one.</li>
+</ul>
+
+<h3 id="finding-rank-of-a-matrix">Finding rank of a matrix</h3>
+<p>To find rank of a matrix, first convert it to an upper or lower traiangular 
+form using elementary row operations e.g \(r_1 \Leftarrow 2 r_3 + 5 r_6\). 
+<em>(More formally, we should convert the matrix to its row echelon form. But for 
+finding rank, any triangular form works just as good)</em>. You might not get a 
+perfect triangle always, thats ok, you should strive to get as many rows 
+containing all zeros as possible. Then, the rank of the matrix is equal to the 
+number of non zero rows in the transformed matrix.</p>
+
+<p>For example,</p>
+
+<p>[\begin{bmatrix}
+0 &amp; 1 &amp; 2<br />
+1 &amp; 2 &amp; 1<br />
+2 &amp; 7 &amp; 8
+\end{bmatrix}
+\Longrightarrow
+\begin{bmatrix}
+1 &amp; 2 &amp; 1<br />
+0 &amp; 1 &amp; 2<br />
+0 &amp; 0 &amp; 0
+\end{bmatrix}]</p>
+
+<p>Hence, rank of this matrix is 2.</p>
+
+<p>We could also use elementary column operations to transform columns instead of 
+rows. The rank will remain the same.</p>
+
+<h3 id="full-rank-matrices">Full rank matrices</h3>
+<p>A matrix is called full rank matrix if all the vectors in a matrix are 
+linearly independent. For example,</p>
+
+<p>[A = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 2<br />
+2 &amp; 1 &amp; 0<br />
+3 &amp; 2 &amp; 1
+\end{bmatrix}]</p>
+
+<p>\(A\) is a full rank matrix.</p>
+
+<p>Following are some interesting conclusions that can be drawn by looking at the 
+rank of a matrix:</p>
+<ul>
+  <li>The determinant of a square matrix is zero if it is not full column rank.</li>
+  <li>A square matrix is invertible only if it has full rank. Because, otherwise 
+the determinant will be zero.</li>
+</ul>
+
+<p>We can have full column rank or full row rank matrices for non-square matrices 
+i.e. when \(m \neq n\).</p>
+
+<p>A matrix is called full column rank matrix if all the column vectors in a 
+matrix are linearly independent i.e. rank of matrix is equal to the number of 
+columns. For example,</p>
+
+<p>[B = 
+\begin{bmatrix}
+1 &amp; 0<br />
+2 &amp; 1<br />
+3 &amp; 2
+\end{bmatrix}]</p>
+
+<p>\(B\) is full column rank matrix because \(Rank(B) = 2 = number \; of \; 
+columns \; of \; B\)</p>
+
+<p>A matrix is called full row rank matrix if all the row vectors in a matrix are 
+linearly independent i.e. rank of matrix is equal to the number of rows. For 
+example,</p>
+
+<p>[C = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 2<br />
+9 &amp; 6 &amp; 3
+\end{bmatrix}]</p>
+
+<p>\(C\) is full column rank matrix because \(Rank(C) = 2 = number \; of \; rows 
+\; of \; C\)</p>
+
+<h3 id="column-space">Column space</h3>
+<p>Column space of a matrix is the set of all possible vectors that can be 
+obtained by linear combination of columns of the matrix. Column space 
+\(\mathcal(C)\) of a \(m \times n\) matrix \(\phi = [ \phi_1 \; \phi_2 \; ... 
+\;\phi_n ]\) where \(\phi_i\)]s are the columns of \(\phi\) is given as</p>
+
+<p>[\mathcal{C}(\phi) = { x \mid x = w^T \phi \; \forall \; w \in 
+\mathbb{R}^m}]</p>
+
+<p>Geometrically, column space is the plane containing \(\phi_1\), \(\phi_2\), 
+…, \(\phi_n\).</p>
+
+<h3 id="lemma">Lemma</h3>
+<p>A matrix \(\phi^T \phi\) is invertible if and only if \(\phi\) is full column 
+rank.</p>
+
+<p><strong>Proof:</strong></p>
+
+<p><em>Part 1:</em></p>
+
+<p>Lets assume that \(\phi\) is not full column rank.</p>
+
+<p>Then, it means that there exists a vector \(x\) such that \(x \neq \bar{0}\) 
+and</p>
+
+<p>[\phi x = \bar{0}]</p>
+
+<p>Pre-multiplying both sides by \(\phi^T\),</p>
+
+<p>[\phi^T \phi x = \bar{0}]</p>
+
+<p>Thus, the matrix \(\phi^T \phi\) is not full rank and hence not invertible.</p>
+
+<p><em>Part 2:</em></p>
+
+<p>Lets assume that \(\phi\) is full column rank and \(\phi^T \phi\) is non 
+invertible.</p>
+
+<p>Then, it means that there exists a vector \(x\) such that \(x \neq \bar{0}\) 
+and</p>
+
+<p>[\phi^T \phi x = \bar{0}]</p>
+
+<p>Pre-multiplying both sides by \(x^T\),</p>
+
+<p>[x^T \phi^T \phi x = 0<br />
+(\phi x)^T \phi x = 0<br />
+\phi x = \bar{0}]</p>
+
+<p>Thus, the matrix \(\phi\) is not full column rank. Our assumption is 
+incorrect. \(\phi^T \phi\) must be invertible.</p>
 <h3>Maximum Likelihood Estimate</h3>
 <p>Suresh tosses a coin 1000 times and he observes heads 400 times.</p>
 
@@ -311,10 +523,10 @@ that it is a function of the unknown parameters \(\theta\).</p>
 probability of getting a heads in this toss. We can estimate the probability 
 of observing heads as</p>
 
-<p>[P(Heads) = \frac{400}{1000} = 0.4 = \hat(p)]</p>
+<p>[P(Heads) = \frac{400}{1000} = 0.4 = \hat{p}_{MLE}]</p>
 
 <p>However, it is important to note that we do not know the exact probability of 
-getting the heads \(p\). \(\hat{p}\) is an estimate that maximises the 
+getting the heads \(p\). \(\hat{p}_{MLE}\) is an estimate that maximises the 
 likelihood of observing the outcomes that we already saw. In other words, it 
 the value of the parameter which is the most reasonable explantion for our 
 observations.</p>
