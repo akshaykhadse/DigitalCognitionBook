@@ -66,22 +66,33 @@
 <h1>Machine Learning</h1>
 <p>This part explores the foundations of Machine Learning.</p>
 <h2>Linear Regression</h2>
-<p>Linear regression is concerned with modelling the relationship between dependent variable and independent variable.</p>
+<p>Linear regression is concerned with modelling the relationship between 
+dependent variable and independent variable.</p>
 
-<p>Suppose a company would like to know how much it should spend on the commercials to achieve a certain amount of sales. It has the data regarding their previous investments for commercials and the resultant sales figures. To get a somewhat accurate estimate, the analysts in the company would like to understand the reationship between the sales and the investments into the TV commercials.</p>
+<p>Suppose a company would like to know how much it should spend on the 
+commercials to achieve a certain amount of sales. It has the data regarding 
+their previous investments for commercials and the resultant sales figures. To 
+get a somewhat accurate estimate, the analysts in the company would like to 
+understand the reationship between the sales and the investments into the TV 
+commercials.</p>
 
 <p>Let’s establish the following notation:</p>
 <ul>
-  <li>The amount invested into the TV commercials is denoted by \(x\) because it is the independent variable here.</li>
-  <li>The sales figure during this period is denoted by \(y\) because it is the dependent variable.</li>
-  <li>The company has data in form of n pairs like \((x_i, y_i)\) where \(i\) is the index.</li>
+  <li>The amount invested into the TV commercials is denoted by \(x\) because it 
+is the independent variable here.</li>
+  <li>The sales figure during this period is denoted by \(y\) because it is the 
+dependent variable.</li>
+  <li>The company has data in form of n pairs like \((x_i, y_i)\) where \(i\) is 
+the index.</li>
 </ul>
 
 <p>Let’s visualize the data via a scatter plot
 <img src="/DigitalCognitionBook/assets/images/linear-regression1.png" alt="Scatter Plot: Sales vs TV" />
-We can clearly see a linear trend in this plot. If spending on TV commercials increases the sales figures seem to increase.</p>
+We can clearly see a linear trend in this plot. If spending on TV commercials 
+increases the sales figures seem to increase.</p>
 
-<p>We describe a general linear relationship between \(x\) and \(y\) via the following equation:</p>
+<p>We describe a general linear relationship between \(x\) and \(y\) via the 
+following equation:</p>
 
 <p>[y = \beta_0 + \beta_1 x]</p>
 
@@ -91,9 +102,11 @@ We can clearly see a linear trend in this plot. If spending on TV commercials in
 
 <p>Let’s plot this line on our data
 <img src="/DigitalCognitionBook/assets/images/linear-regression2.png" alt="Linear Regression Fit" />
-We can see that the line passes more or less through the middle of the data points.</p>
+We can see that the line passes more or less through the middle of the data 
+points.</p>
 
-<p>In this example, we had just one value as input i.e. the \(x\) was scalar. However, there might be seveal factors which influence the sales figures like</p>
+<p>In this example, we had just one value as input i.e. the \(x\) was scalar. 
+However, there might be seveal factors which influence the sales figures like</p>
 <ul>
   <li>Time of investment</li>
   <li>Time of commercial</li>
@@ -101,15 +114,22 @@ We can see that the line passes more or less through the middle of the data poin
   <li>Expenditure on newspaper commercials</li>
 </ul>
 
-<p>In this case, the \(x\) is not a scalar, but a collection of the above attributes. The following section will formalize the linear regression problem for such cases.</p>
+<p>In this case, the \(x\) is not a scalar, but a collection of the above 
+attributes. The following section will formalize the linear regression problem 
+for such cases.</p>
 <h3>Simple Linear Regression</h3>
-<p>Suppose we have a dataset \(\mathcal{D}\) which contains examples \(&lt;x_1, y_1&gt;\), \(&lt;x_2, y_2&gt;\), \(&lt;x_3, y_3&gt;\), … \(&lt;x_m, y_m&gt;\) where \(m\) is the total number of examples.</p>
+<p>Suppose we have a dataset \(\mathcal{D}\) which contains examples 
+\(&lt;x_1, y_1&gt;\), \(&lt;x_2, y_2&gt;\), \(&lt;x_3, y_3&gt;\), … \(&lt;x_m, y_m&gt;\) where \(m\) 
+is the total number of examples.</p>
 
-<p>Each \(x\) is an input (also known as independent variable). And each \(y\) is output (also known as dependent or target variable).</p>
+<p>Each \(x\) is an input (also known as independent variable). And each \(y\) is 
+output (also known as dependent or target variable).</p>
 
-<p>\((x, y)\) represents a single example. \((x_i, y_i)\) is the \(j^{th}\) example where \(j\) is index to the dataset.</p>
+<p>\((x, y)\) represents a single example. \((x_i, y_i)\) is the \(j^{th}\) 
+example where \(j\) is index to the dataset.</p>
 
-<p>Each \(x_i\) has \(p\) attributes \(\phi_1(x_i)\), \(\phi_2(x_i)\), …, \(\phi_p(x_i)\). Then, we define a new \(m \times (p+1)\) matrix \(\phi\) as</p>
+<p>Each \(x_i\) has \(p\) attributes \(\phi_1(x_i)\), \(\phi_2(x_i)\), …, 
+\(\phi_p(x_i)\). Then, we define a new \(m \times (p+1)\) matrix \(\phi\) as</p>
 
 <p>[\phi = 
 \begin{bmatrix}
@@ -137,7 +157,8 @@ y_m
 
 <p>[y_i = w_0 + w_1 \phi_1(x_i) + w_2 \phi_2(x_i) + … + w_p \phi_p(x_i)]</p>
 
-<p>where \(w_0\) is the bias and \(w_1\), \(w_2\), …, \(w_p\) are weights. We can denote this by a vector \(w\) as</p>
+<p>where \(w_0\) is the bias and \(w_1\), \(w_2\), …, \(w_p\) are weights. We 
+can denote this by a vector \(w\) as</p>
 
 <p>[w = 
 \begin{bmatrix}
@@ -171,23 +192,41 @@ w_p
 
 <p>[y = \phi(x) w]</p>
 
-<p>The \(y\) is linear combination of coloumns of matrix \(\phi\) because \(i^th\) coloumn of \(\phi\) is multiplied by \(w_i\). But this does not mean that linear regression is naievely linear. We can inject nonlinearities via the features/basis functions \(\phi_i\)s. For example, we could have used a function \(\phi(x_i) = x_i^2\) in the TV commercial example. To summarize, \(y\) is linear in \(\phi\) and \(w\) but it may or may not be linear with respect to \(x\).</p>
+<p>The \(y\) is linear combination of coloumns of matrix \(\phi\) because 
+\(i^th\) coloumn of \(\phi\) is multiplied by \(w_i\). But this does not mean 
+that linear regression is naievely linear. We can inject nonlinearities via 
+the features/basis functions \(\phi_i\)s. For example, we could have used a 
+function \(\phi(x_i) = x_i^2\) in the TV commercial example. To summarize, 
+\(y\) is linear in \(\phi\) and \(w\) but it may or may not be linear with 
+respect to \(x\).</p>
 
 <h3 id="regression-problem">Regression Problem</h3>
 <p>Now we define the regression problem as:</p>
 
-<p>Determine a function \(f^*\) such that \(f^*(x)\) is the best predictor (minimizes the error \(E(f, \mathcal{D})\)) of \(y\) with respect to the data \(\mathcal{D}\).</p>
+<p>Determine a function \(f^*\) such that \(f^*(x)\) is the best predictor 
+(minimizes the error \(E(f, \mathcal{D})\)) of \(y\) with respect to the data 
+\(\mathcal{D}\).</p>
 
 <p>[f^* = \underset{f \in \mathcal{F}}{\operatorname{argmin}} E(f, \mathcal{D})]</p>
 
-<p>Here, \(f\) is a function which belongs to a class of functions \(\mathcal{F}\). For linear regression, \(\mathcal{F}\) is class of linear functions i.e. \(f\) is a linear function.</p>
+<p>Here, \(f\) is a function which belongs to a class of functions 
+\(\mathcal{F}\). For linear regression, \(\mathcal{F}\) is class of linear 
+functions i.e. \(f\) is a linear function.</p>
 
-<p>When we say best predictor, we must have a measure which we use to determine goodness of a function. The error function \(E\) is a measure of deviation of predicted value \(\hat{y}\) from the observed value \(y\). Smaller the error, better the predictior function \(f\). The error \(E\) is a function of \(f\) and data \(\mathcal{D}\). A common error function is Sum of Squared Error. There are different types of linear regression based on what error function is minimized and what classes of fuctions are considered.</p>
+<p>When we say best predictor, we must have a measure which we use to determine 
+goodness of a function. The error function \(E\) is a measure of deviation of 
+predicted value \(\hat{y}\) from the observed value \(y\). Smaller the error, 
+better the predictior function \(f\). The error \(E\) is a function of \(f\) 
+and data \(\mathcal{D}\). A common error function is Sum of Squared Error. 
+There are different types of linear regression based on what error function is 
+minimized and what classes of fuctions are considered.</p>
 
 <h3 id="linear-regression-problem">Linear Regression Problem</h3>
-<p>If we consider the class of linear functions for \(f\), then \(f(\phi(x), w) = \phi(x)w\). We can rewrite the above problem as:</p>
+<p>If we consider the class of linear functions for \(f\), then 
+\(f(\phi(x), w) = \phi(x)w\). We can rewrite the above problem as:</p>
 
-<p>Determine parameters \(w\) for the function \(f(\phi(x), w)\) which minimises the error function \(E(f(\phi(x), w), \mathcal{D})\).</p>
+<p>Determine parameters \(w\) for the function \(f(\phi(x), w)\) which minimises 
+the error function \(E(f(\phi(x), w), \mathcal{D})\).</p>
 
 <p>[w^* = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})]</p>
 
@@ -196,19 +235,24 @@ w_p
 
 <p>[E(f, \mathcal{D}) = \sum_{\mathcal{D}}^{} (y_i - f(x_i))^2]</p>
 
-<p>It measures the square of deviation of each example \((x_i, y_i)\) from the prediction \(\hat{y_i} = w^T \phi(x_i)\). Thus, it is a function of \(f\) and data \(\mathcal{D}\). This also known as Residual Sum of Squares (RSS).</p>
+<p>It measures the square of deviation of each example \((x_i, y_i)\) from the 
+prediction \(\hat{y_i} = w^T \phi(x_i)\). Thus, it is a function of \(f\) and 
+data \(\mathcal{D}\). This also known as Residual Sum of Squares (RSS).</p>
 
-<p>This error is used to find a least square solution to linear regression problem.</p>
+<p>This error is used to find a least square solution to linear regression 
+problem.</p>
 <h3>Least Squares Solution</h3>
 <p>We can write the sum of squares error in matrix form as</p>
 
 <p>[E(f(\phi(x), w) = (y - \phi w)^T(y - \phi w)]</p>
 
-<p>You might have noticed that we used \(\phi\) instead of \(\phi(x)\). We will abuse the notations to make the further mathematical treatment simple to understand.</p>
+<p>You might have noticed that we used \(\phi\) instead of \(\phi(x)\). We will 
+abuse the notations to make the further mathematical treatment simple to 
+understand.</p>
 
-<p>Then we can find the parameters \(w^*\)</p>
+<p>Then we can find the parameters \(\hat{w}\)</p>
 
-<p>[w^* = \underset{w}{(y - \phi w)^T(y - \phi w)}]</p>
+<p>[\hat{w} = \underset{w}{(y - \phi w)^T(y - \phi w)}]</p>
 
 <p>Differentiating \(E\) with respect to \(w\),</p>
 
@@ -216,45 +260,82 @@ w_p
 
 <p>[\frac{\partial^2 E}{\partial{w}\partial{w^T}} = \phi^T \phi]</p>
 
-<p>If \(\phi\) has full column rank, and hence \(\phi^T \phi\) is positive definite, we set the first derivative to zero</p>
+<p>If \(\phi\) has full column rank, and hence \(\phi^T \phi\) is positive 
+definite, we set the first derivative to zero</p>
 
 <p>[\phi^T (y - \phi w) = 0]</p>
 
 <p>To obtain the solution</p>
 
-<p>[w^* = (\phi^T \phi)^{-1} \phi^T y]</p>
-
-<p>The predicted values \(\hat{y}\) are given by</p>
-
-<p>[\hat{y} = \phi w^*]</p>
+<p>[\hat{w} = (\phi^T \phi)^{-1} \phi^T y]</p>
 <h3>Maximum Likelihood Estimate</h3>
 <p>Suresh tosses a coin 1000 times and he observes heads 400 times.</p>
 
-<p>This is a stochastic process that takes discrete values viz. heads (1) or tails (0). In such cases, we can calculate the probability of observing a particular set of outcomes by making suitable assumptions about the underlying stochastic process. For example, in our case, probability of coin landing heads is \(p\) and that coin tosses are independent.</p>
+<p>This is a stochastic process that takes discrete values viz. heads (1) or tails 
+(0). In such cases, we can calculate the probability of observing a particular 
+set of outcomes by making suitable assumptions about the underlying stochastic 
+process. For example, in our case, probability of coin landing heads is \(p\) 
+and that coin tosses are independent.</p>
 
-<p>Let’s denote the observed outcomes by \(O\) and the set of parameters that describe the stochastic process as \(\theta\). Our observed outcome is 400 heads and 600 tails. The process of tossing a coin is governed only by the probability \(p\). Hence, \(\theta = p\). Thus, when we speak of probability we want to calculate \(P(O \mid \theta)\). In other words, given specific values for \(\theta\), \(P(O \mid \theta)\) is the probability that we would observe the outcomes represented by \(O\).</p>
+<p>Let’s denote the observed outcomes by \(O\) and the set of parameters that 
+describe the stochastic process as \(\theta\). Our observed outcome is 400 
+heads and 600 tails. The process of tossing a coin is governed only by the 
+probability \(p\). Hence, \(\theta = p\). Thus, when we speak of probability 
+we want to calculate \(P(O \mid \theta)\). In other words, given specific 
+values for \(\theta\), \(P(O \mid \theta)\) is the probability that we would 
+observe the outcomes represented by \(O\).</p>
 
-<p>However, when we model a real life stochastic process, we often do not know \(\theta\). We simply observe \(O\) and the goal then is to arrive at an estimate for \(\theta\) that would be a plausible choice given the observed outcomes \(O\). We know that given a value of \(\theta\) the probability of observing \(O\) is \(P(O \mid \theta)\). Thus, a ‘natural’ estimation process is to choose that value of \(\theta\) that would maximize the probability that we would actually observe \(O\). In other words, we find the parameter values \(\theta\) that maximize the following function:</p>
+<p>However, when we model a real life stochastic process, we often do not know 
+\(\theta\). We simply observe \(O\) and the goal then is to arrive at an 
+estimate for \(\theta\) that would be a plausible choice given the observed 
+outcomes \(O\). We know that given a value of \(\theta\) the probability of 
+observing \(O\) is \(P(O \mid \theta)\). Thus, a ‘natural’ estimation process 
+is to choose that value of \(\theta\) that would maximize the probability that 
+we would actually observe \(O\). In other words, we find the parameter values 
+\(\theta\) that maximize the following function:</p>
 
 <p>[L(\theta \mid O) = P(O \mid \theta)]</p>
 
-<p>\(L(\theta \mid O)\) is called the likelihood function. Notice that by definition the likelihood function is conditioned on the observed \(O\) and that it is a function of the unknown parameters \(\theta\).</p>
+<p>\(L(\theta \mid O)\) is called the likelihood function. Notice that by 
+definition the likelihood function is conditioned on the observed \(O\) and 
+that it is a function of the unknown parameters \(\theta\).</p>
 
-<p>Suresh is about to toss the coin again and he would like to know the probability of getting a heads in this toss. We can estimate the probability of observing heads as
-\(P(Heads) = \frac{400}{1000} = 0.4 = \hat(p)\)
-However, it is important to note that we do not know the exact probability of getting the heads \(p\). \(\hat{p}\) is an estimate that maximises the likelihood of observing the outcomes that we already saw. In other words, it the value of the parameter which is the most reasonable explantion for our observations.</p>
+<p>Suresh is about to toss the coin again and he would like to know the 
+probability of getting a heads in this toss. We can estimate the probability 
+of observing heads as</p>
+
+<p>[P(Heads) = \frac{400}{1000} = 0.4 = \hat(p)]</p>
+
+<p>However, it is important to note that we do not know the exact probability of 
+getting the heads \(p\). \(\hat{p}\) is an estimate that maximises the 
+likelihood of observing the outcomes that we already saw. In other words, it 
+the value of the parameter which is the most reasonable explantion for our 
+observations.</p>
 
 <h3 id="caveat-continuous-random-variables">Caveat: Continuous Random Variables</h3>
 
-<p>If the stochatistc process has a continous random variable as its outcome, then the situation is similar with one important difference. We can no longer talk about the probability that we observed \(O\) given \(\theta\) because in the continuous case \(P(O \mid \theta)=0\). Without getting into technicalities, the basic idea is as follows:</p>
+<p>If the stochatistc process has a continous random variable as its outcome, 
+then the situation is similar with one important difference. We can no longer 
+talk about the probability that we observed \(O\) given \(\theta\) because in 
+the continuous case \(P(O \mid \theta)=0\). Without getting into technicalities
+, the basic idea is as follows:</p>
 
-<p>Denote the probability density function (pdf) associated with the outcomes \(O\) as: \(f(O \mid \theta)\). Thus, in the continuous case we estimate \(\theta\) given observed outcomes \(O\) by maximizing the following function:</p>
+<p>Denote the probability density function (pdf) associated with the outcomes 
+\(O\) as: \(f(O \mid \theta)\). Thus, in the continuous case we estimate 
+\(\theta\) given observed outcomes \(O\) by maximizing the following function:</p>
 
 <p>[L(\theta \mid O)=f(O \mid \theta)]</p>
 
-<p>Our use of the pdf instead of actual probability intutuively makes sense because if we compare probabilities of getting a small set of outcome e.g. \(P(300 \leq O \leq 301 \mid \theta)\) instead of a particular outcome e.g. \(P(O = 300 \mid \theta)\), then we can see that the probabilities are actually proportional to the value of pdf \(f((O_{max} + O_{min})/2 \mid \theta)\).</p>
+<p>Our use of the pdf instead of actual probability intutuively makes sense 
+because if we compare probabilities of getting a small set of outcome e.g. 
+\(P(300 \leq O \leq 301 \mid \theta)\) instead of a particular outcome e.g. 
+\(P(O = 300 \mid \theta)\), then we can see that the probabilities are 
+actually proportional to the value of pdf 
+\(f((O_{max} + O_{min})/2 \mid \theta)\).</p>
 
-<p>In this situation, we cannot technically assert that we are finding the parameter value that maximizes the probability that we observe \(O\) as we maximize the PDF associated with the observed outcomes \(O\).</p>
+<p>In this situation, we cannot technically assert that we are finding the 
+parameter value that maximizes the probability that we observe \(O\) as we 
+maximize the PDF associated with the observed outcomes \(O\).</p>
 
   </body>
 </html>
