@@ -3,7 +3,7 @@ chapter: 10
 title: Simple Linear Regression
 ---
 Suppose we have a dataset $$\mathcal{D}$$ which contains examples 
-$$<x_1, y_1>$$, $$<x_2, y_2>$$, $$<x_3, y_3>$$, ... $$<x_m, y_m>$$ where $$m$$ 
+$$<x_1, y_1>$$, $$<x_2, y_2>$$, $$<x_3, y_3>$$, ... $$<x_n, y_n>$$ where $$m$$ 
 is the total number of examples.
 
 Each $$x$$ is an input (also known as independent variable). And each $$y$$ is 
@@ -13,7 +13,7 @@ $$(x, y)$$ represents a single example. $$(x_i, y_i)$$ is the $$j^{th}$$
 example where $$j$$ is index to the dataset.
 
 Each $$x_i$$ has $$p$$ attributes $$\phi_1(x_i)$$, $$\phi_2(x_i)$$, ..., 
-$$\phi_p(x_i)$$. Then, we define a new $$m \times (p+1)$$ matrix $$\phi$$ as
+$$\phi_p(x_i)$$. Then, we define a new $$n \times (p+1)$$ matrix $$\phi$$ as
 
 $$
 \phi = 
@@ -23,11 +23,11 @@ $$
 .\\
 .\\
 .\\
-1 & \phi_1(x_m) & \phi_2(x_m) & ... & \phi_p(x_m)\\
+1 & \phi_1(x_n) & \phi_2(x_n) & ... & \phi_p(x_n)\\
 \end{bmatrix}
 $$
 
-Let's also define a $$m \times 1$$ matrix $$y$$ as
+Let's also define a $$n \times 1$$ matrix $$y$$ as
 
 $$
 y = 
@@ -37,7 +37,7 @@ y_2 \\
 . \\
 . \\
 . \\
-y_m
+y_n
 \end{bmatrix}
 $$
 
@@ -84,8 +84,8 @@ The same equation can be written for all values of $$y$$ as
 
 $$ y = \phi(x) w $$
 
-The $$y$$ is linear combination of coloumns of matrix $$\phi$$ because 
-$$i^th$$ coloumn of $$\phi$$ is multiplied by $$w_i$$. But this does not mean 
+The $$y$$ is linear combination of columns of matrix $$\phi$$ because 
+$$i^th$$ column of $$\phi$$ is multiplied by $$w_i$$. But this does not mean 
 that linear regression is naievely linear. We can inject nonlinearities via 
 the features/basis functions $$\phi_i$$s. For example, we could have used a 
 function $$\phi(x_i) = x_i^2$$ in the TV commercial example. To summarize, 

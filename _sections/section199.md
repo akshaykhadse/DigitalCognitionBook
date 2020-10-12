@@ -37,10 +37,10 @@ Suresh is about to toss the coin again and he would like to know the
 probability of getting a heads in this toss. We can estimate the probability 
 of observing heads as
 
-$$P(Heads) = \frac{400}{1000} = 0.4 = \hat(p)$$
+$$P(Heads) = \frac{400}{1000} = 0.4 = \hat{p}_{MLE}$$
 
 However, it is important to note that we do not know the exact probability of 
-getting the heads $$p$$. $$\hat{p}$$ is an estimate that maximises the 
+getting the heads $$p$$. $$\hat{p}_{MLE}$$ is an estimate that maximises the 
 likelihood of observing the outcomes that we already saw. In other words, it 
 the value of the parameter which is the most reasonable explantion for our 
 observations.
