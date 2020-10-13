@@ -3,7 +3,7 @@ chapter: 10
 title: Simple Linear Regression
 ---
 Suppose we have a dataset $$\mathcal{D}$$ which contains examples 
-$$<x_1, y_1>$$, $$<x_2, y_2>$$, $$<x_3, y_3>$$, ... $$<x_n, y_n>$$ where $$m$$ 
+$$(x_1, y_1)$$, $$(x_2, y_2)$$, $$(x_3, y_3)$$, ... $$(x_n, y_n)$$ where $$m$$ 
 is the total number of examples.
 
 Each $$x$$ is an input (also known as independent variable). And each $$y$$ is 
@@ -13,7 +13,13 @@ $$(x, y)$$ represents a single example. $$(x_i, y_i)$$ is the $$j^{th}$$
 example where $$j$$ is index to the dataset.
 
 Each $$x_i$$ has $$p$$ attributes $$\phi_1(x_i)$$, $$\phi_2(x_i)$$, ..., 
-$$\phi_p(x_i)$$. Then, we define a new $$n \times (p+1)$$ matrix $$\phi$$ as
+$$\phi_p(x_i)$$. $$\phi_i$$'s should be considered as a functions which when 
+applied to any point $$x_j$$, gives the value of attribute $$\phi_i(x_j)$$. 
+For example, we may encounter a sample $$(1.12, 14)$$ where $$x_i = 10$$. If 
+an attribute is defined as $$\phi_j(x_i) = sin(x_i)$$, then 
+$$\phi_j(1.12) = sin(1.12).
+
+We define a new $$n \times (p+1)$$ matrix $$\phi(x)$$ or simply $$\phi$$ as
 
 $$
 \phi = 
@@ -26,6 +32,10 @@ $$
 1 & \phi_1(x_n) & \phi_2(x_n) & ... & \phi_p(x_n)\\
 \end{bmatrix}
 $$
+
+$$i^{th}$$ row of this matrix is represented as $$\phi(x_i)$$. Similarly, 
+$$i^{th}$$ column of this matrix can be represented as $$\phi_i(x)$$. This is 
+also known as $$i^{th}$$ feature of the datset $$\mathcal{D}$$.
 
 Let's also define a $$n \times 1$$ matrix $$y$$ as
 
@@ -85,7 +95,7 @@ The same equation can be written for all values of $$y$$ as
 $$ y = \phi(x) w $$
 
 The $$y$$ is linear combination of columns of matrix $$\phi$$ because 
-$$i^th$$ column of $$\phi$$ is multiplied by $$w_i$$. But this does not mean 
+$$i^{th}$$ column of $$\phi$$ is multiplied by $$w_i$$. But this does not mean 
 that linear regression is naievely linear. We can inject nonlinearities via 
 the features/basis functions $$\phi_i$$s. For example, we could have used a 
 function $$\phi(x_i) = x_i^2$$ in the TV commercial example. To summarize, 
@@ -95,11 +105,11 @@ respect to $$x$$.
 ## Regression Problem
 Now we define the regression problem as:
 
-Determine a function $$f^*$$ such that $$f^*(x)$$ is the best predictor 
+Determine a function $$\hat{f}$$ such that $$\hat{f}(x)$$ is the best predictor 
 (minimizes the error $$E(f, \mathcal{D})$$) of $$y$$ with respect to the data 
 $$\mathcal{D}$$.
 
-$$f^* = \underset{f \in \mathcal{F}}{\operatorname{argmin}} E(f, \mathcal{D})$$
+$$\hat{f} = \underset{f \in \mathcal{F}}{\operatorname{argmin}} E(f, \mathcal{D})$$
 
 Here, $$f$$ is a function which belongs to a class of functions 
 $$\mathcal{F}$$. For linear regression, $$\mathcal{F}$$ is class of linear 
@@ -120,7 +130,7 @@ $$f(\phi(x), w) = \phi(x)w$$. We can rewrite the above problem as:
 Determine parameters $$w$$ for the function $$f(\phi(x), w)$$ which minimises 
 the error function $$E(f(\phi(x), w), \mathcal{D})$$.
 
-$$w^* = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})$$
+$$\hat{w} = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})$$
 
 ## Sum of Squared Error (SSE)
 The sum of squares error is defined as follows:
@@ -128,7 +138,7 @@ The sum of squares error is defined as follows:
 $$E(f, \mathcal{D}) = \sum_{\mathcal{D}}^{} (y_i - f(x_i))^2$$
 
 It measures the square of deviation of each example $$(x_i, y_i)$$ from the 
-prediction $$\hat{y_i} = w^T \phi(x_i)$$. Thus, it is a function of $$f$$ and 
+prediction $$\hat{y_i} = w^\intercal \phi(x_i)$$. Thus, it is a function of $$f$$ and 
 data $$\mathcal{D}$$. This also known as Residual Sum of Squares (RSS).
 
 This error is used to find a least square solution to linear regression 

@@ -2,7 +2,7 @@
 chapter: 10
 title: Geometric Interpretation of Least Squares Solution
 ---
-![Geometric interpretation of least squares solution]({{ "/assets/images/geometric_interpretation.svg" | relative_url }})
+![Geometric interpretation of least squares solution]({{ "/assets/images/geometric_interpretation.svg" | relative_url }}){:width="80%" height="80%"}
 
 In the above figure, the $$\phi_1(x)$$, $$\phi_2(x)$$, ..., $$\phi_p(x)$$ are 
 the vectors corresponding to each column of $$\phi(x)$$. The shaded blue 
@@ -32,32 +32,32 @@ $$(y - \hat{y}) \perp \phi_2(x)$$, ..., $$(y - \hat{y}) \perp \phi_p(x)$$.
 This can be exressed in terms of dot product as:
 
 $$
-(y - \hat{y})^T \phi_1(x)\\
-(y - \hat{y})^T \phi_2(x)\\
+(y - \hat{y})^\intercal \phi_1(x)\\
+(y - \hat{y})^\intercal \phi_2(x)\\
 . \\
 . \\
 . \\
-(y - \hat{y})^T \phi_p(x)\\
+(y - \hat{y})^\intercal \phi_p(x)\\
 $$
 
 In matrix form,
 
-$$(y - \hat{y})^T \phi = \bar{0}$$
+$$(y - \hat{y})^\intercal \phi = \bar{0}$$
 
 Substituting value of $$\hat{y}$$,
 
 $$
-(y - \phi \hat{w})^T \phi = (\bar{0})^T\\
-y^T \phi - \hat{w}^T \phi^T \phi = (\bar{0})^T\\
-\phi^T y - \phi^T \phi \hat{w} = \bar{0}\\
-\phi^T \phi \hat{w} = \phi^T y
+(y - \phi \hat{w})^\intercal \phi = (\bar{0})^\intercal\\
+y^\intercal \phi - \hat{w}^\intercal \phi^\intercal \phi = (\bar{0})^\intercal\\
+\phi^\intercal y - \phi^\intercal \phi \hat{w} = \bar{0}\\
+\phi^\intercal \phi \hat{w} = \phi^\intercal y
 $$
 
 Thus,
 
-$$\hat{w} = (\phi^T \phi)^{-1} \phi^T y$$
+$$\hat{w} = (\phi^\intercal \phi)^{-1} \phi^\intercal y$$
 
 This is same result which we obtained earlier.
 
-It is important to note that $$\phi^T \phi$$ is invertible only when $$\phi$$ 
+It is important to note that $$\phi^\intercal \phi$$ is invertible only when $$\phi$$ 
 has full column rank.

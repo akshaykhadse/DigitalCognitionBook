@@ -2,7 +2,6 @@
 chapter: 01
 title: Section 1
 ---
-
 This is section 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id mauris eros. Phasellus risus arcu, ultricies in semper in, sagittis at ligula. Sed imperdiet vel tellus ut posuere. Nunc tempor ante sit amet turpis porttitor fringilla. Fusce a varius dolor. Nullam sollicitudin scelerisque elit et commodo. Donec justo mi, vestibulum vitae turpis eget, cursus commodo odio. Nullam at velit mauris.
 
 Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum fermentum non purus nec porttitor. Phasellus cursus odio justo, a scelerisque eros sodales nec. Donec libero magna, egestas ut ex id, condimentum pellentesque justo. Phasellus sit amet viverra ex. Nulla ornare tempus volutpat. Donec vel blandit erat, ac lacinia purus. Donec pulvinar luctus ultricies. In placerat non neque et malesuada. Etiam eget aliquet turpis. Nulla molestie ultrices enim sit amet vulputate. Nulla efficitur erat ac sem vehicula lobortis. Proin ex ligula, mollis ut viverra vel, fermentum porttitor massa. Donec varius lobortis tellus, quis viverra massa dictum ut.

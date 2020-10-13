@@ -2,7 +2,6 @@
 chapter: 10
 title: Matrix Rank
 ---
-
 A $$m \times n$$ matrix has $$m$$ rows, each containing $$n$$ elements each. 
 Same matrix can also be viewed as $$n$$ columns containing $$m$$ elements each.
 
@@ -119,14 +118,14 @@ obtained by linear combination of columns of the matrix. Column space
 $$\mathcal(C)$$ of a $$m \times n$$ matrix $$\phi = [ \phi_1 \; \phi_2 \; ... 
 \;\phi_n ]$$ where $$\phi_i$$]s are the columns of $$\phi$$ is given as
 
-$$ \mathcal{C}(\phi) = \{ x \mid x = w^T \phi \; \forall \; w \in 
+$$ \mathcal{C}(\phi) = \{ x \mid x = w^\intercal \phi \; \forall \; w \in 
 \mathbb{R}^m\}$$
 
 Geometrically, column space is the plane containing $$\phi_1$$, $$\phi_2$$, 
 ..., $$\phi_n$$.
 
 ## Lemma
-A matrix $$\phi^T \phi$$ is invertible if and only if $$\phi$$ is full column 
+A matrix $$\phi^\intercal \phi$$ is invertible if and only if $$\phi$$ is full column 
 rank.
 
 **Proof:**
@@ -140,29 +139,29 @@ and
 
 $$\phi x = \bar{0}$$
 
-Pre-multiplying both sides by $$\phi^T$$,
+Pre-multiplying both sides by $$\phi^\intercal$$,
 
-$$\phi^T \phi x = \bar{0}$$
+$$\phi^\intercal \phi x = \bar{0}$$
 
-Thus, the matrix $$\phi^T \phi$$ is not full rank and hence not invertible.
+Thus, the matrix $$\phi^\intercal \phi$$ is not full rank and hence not invertible.
 
 *Part 2:*
 
-Lets assume that $$\phi$$ is full column rank and $$\phi^T \phi$$ is non 
+Lets assume that $$\phi$$ is full column rank and $$\phi^\intercal \phi$$ is non 
 invertible.
 
 Then, it means that there exists a vector $$x$$ such that $$x \neq \bar{0}$$ 
 and 
 
-$$\phi^T \phi x = \bar{0}$$
+$$\phi^\intercal \phi x = \bar{0}$$
 
-Pre-multiplying both sides by $$x^T$$,
+Pre-multiplying both sides by $$x^\intercal$$,
 
 $$
-x^T \phi^T \phi x = 0\\
-(\phi x)^T \phi x = 0\\
+x^\intercal \phi^\intercal \phi x = 0\\
+(\phi x)^\intercal \phi x = 0\\
 \phi x = \bar{0}
 $$
 
 Thus, the matrix $$\phi$$ is not full column rank. Our assumption is 
-incorrect. $$\phi^T \phi$$ must be invertible.
+incorrect. $$\phi^\intercal \phi$$ must be invertible.
