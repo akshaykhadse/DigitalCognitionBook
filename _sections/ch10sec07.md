@@ -30,4 +30,4 @@ Given a discrete random variable $$X$$, with possible outcomes $$x_1$$, ..., $$x
 
 $$H(X) = - \sum_{i=1}^{n} P(x_i) \log_{2}(P(x_i))$$
 
-Of all the distributions with variance $$\sigma^2$$, Gaussian distribution has the highest entropy. It models the highest uncertainity. Hence, it usually chosen to model unknown random variables. This is the reason we chose $$\mathcal{N}(0, \sigma^2)$$ to model the error $$\varepsilon$$.
+Of all the distributions with variance $$\sigma^2$$, Gaussian distribution has the highest entropy. It models the highest uncertainity. Hence, it usually chosen to model unknown random variables as it encapsulates the worst case scenario of maximum uncertainity. This is the reason we chose $$\mathcal{N}(0, \sigma^2)$$ to model the error $$\varepsilon$$.
