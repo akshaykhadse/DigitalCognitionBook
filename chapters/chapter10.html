@@ -218,7 +218,7 @@ attributes. The following section will formalize the linear regression problem
 for such cases.</p>
 <h2><a name="ch10-SimpleLinearRegression"></a>Simple Linear Regression</h2>
       <p>Suppose we have a dataset \(\mathcal{D}\) which contains examples 
-\(&lt;x_1, y_1&gt;\), \(&lt;x_2, y_2&gt;\), \(&lt;x_3, y_3&gt;\), … \(&lt;x_n, y_n&gt;\) where \(m\) 
+\((x_1, y_1)\), \((x_2, y_2)\), \((x_3, y_3)\), … \((x_n, y_n)\) where \(m\) 
 is the total number of examples.</p>
 
 <p>Each \(x\) is an input (also known as independent variable). And each \(y\) is 
@@ -228,7 +228,13 @@ output (also known as dependent or target variable).</p>
 example where \(j\) is index to the dataset.</p>
 
 <p>Each \(x_i\) has \(p\) attributes \(\phi_1(x_i)\), \(\phi_2(x_i)\), …, 
-\(\phi_p(x_i)\). Then, we define a new \(n \times (p+1)\) matrix \(\phi\) as</p>
+\(\phi_p(x_i)\). \(\phi_i\)’s should be considered as a functions which when 
+applied to any point \(x_j\), gives the value of attribute \(\phi_i(x_j)\). 
+For example, we may encounter a sample \((1.12, 14)\) where \(x_i = 10\). If 
+an attribute is defined as \(\phi_j(x_i) = sin(x_i)\), then 
+$$\phi_j(1.12) = sin(1.12).</p>
+
+<p>We define a new \(n \times (p+1)\) matrix \(\phi(x)\) or simply \(\phi\) as</p>
 
 \[\phi = 
 \begin{bmatrix}
@@ -239,6 +245,10 @@ example where \(j\) is index to the dataset.</p>
 .\\
 1 &amp; \phi_1(x_n) &amp; \phi_2(x_n) &amp; ... &amp; \phi_p(x_n)\\
 \end{bmatrix}\]
+
+<p>\(i^{th}\) row of this matrix is represented as \(\phi(x_i)\). Similarly, 
+\(i^{th}\) column of this matrix can be represented as \(\phi_i(x)\). This is 
+also known as \(i^{th}\) feature of the datset \(\mathcal{D}\).</p>
 
 <p>Let’s also define a \(n \times 1\) matrix \(y\) as</p>
 
@@ -292,7 +302,7 @@ w_p
 \[y = \phi(x) w\]
 
 <p>The \(y\) is linear combination of columns of matrix \(\phi\) because 
-\(i^th\) column of \(\phi\) is multiplied by \(w_i\). But this does not mean 
+\(i^{th}\) column of \(\phi\) is multiplied by \(w_i\). But this does not mean 
 that linear regression is naievely linear. We can inject nonlinearities via 
 the features/basis functions \(\phi_i\)s. For example, we could have used a 
 function \(\phi(x_i) = x_i^2\) in the TV commercial example. To summarize, 
@@ -302,11 +312,11 @@ respect to \(x\).</p>
 <h3 id="regression-problem">Regression Problem</h3>
 <p>Now we define the regression problem as:</p>
 
-<p>Determine a function \(f^*\) such that \(f^*(x)\) is the best predictor 
+<p>Determine a function \(\hat{f}\) such that \(\hat{f}(x)\) is the best predictor 
 (minimizes the error \(E(f, \mathcal{D})\)) of \(y\) with respect to the data 
 \(\mathcal{D}\).</p>
 
-\[f^* = \underset{f \in \mathcal{F}}{\operatorname{argmin}} E(f, \mathcal{D})\]
+\[\hat{f} = \underset{f \in \mathcal{F}}{\operatorname{argmin}} E(f, \mathcal{D})\]
 
 <p>Here, \(f\) is a function which belongs to a class of functions 
 \(\mathcal{F}\). For linear regression, \(\mathcal{F}\) is class of linear 
@@ -327,7 +337,7 @@ minimized and what classes of fuctions are considered.</p>
 <p>Determine parameters \(w\) for the function \(f(\phi(x), w)\) which minimises 
 the error function \(E(f(\phi(x), w), \mathcal{D})\).</p>
 
-\[w^* = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})\]
+\[\hat{w} = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})\]
 
 <h3 id="sum-of-squared-error-sse">Sum of Squared Error (SSE)</h3>
 <p>The sum of squares error is defined as follows:</p>
@@ -335,7 +345,7 @@ the error function \(E(f(\phi(x), w), \mathcal{D})\).</p>
 \[E(f, \mathcal{D}) = \sum_{\mathcal{D}}^{} (y_i - f(x_i))^2\]
 
 <p>It measures the square of deviation of each example \((x_i, y_i)\) from the 
-prediction \(\hat{y_i} = w^T \phi(x_i)\). Thus, it is a function of \(f\) and 
+prediction \(\hat{y_i} = w^\intercal \phi(x_i)\). Thus, it is a function of \(f\) and 
 data \(\mathcal{D}\). This also known as Residual Sum of Squares (RSS).</p>
 
 <p>This error is used to find a least square solution to linear regression 
@@ -348,7 +358,7 @@ subject.</em></p>
 
 <p>We can write the sum of squares error in matrix form as</p>
 
-\[E(f(\phi(x), w) = (y - \phi w)^T(y - \phi w)\]
+\[E(f(\phi(x), w), \mathcal{D}) = (y - \phi w)^\intercal(y - \phi w)\]
 
 <p>You might have noticed that we used \(\phi\) instead of \(\phi(x)\). We will 
 abuse the notations to make the further mathematical treatment simple to 
@@ -356,24 +366,24 @@ understand.</p>
 
 <p>Then we can find the parameters \(\hat{w}\)</p>
 
-\[\hat{w} = \underset{w}{(y - \phi w)^T(y - \phi w)}\]
+\[\hat{w} = \underset{w}{(y - \phi w)^\intercal(y - \phi w)}\]
 
 <p>Differentiating \(E\) with respect to \(w\),</p>
 
-\[\frac{\partial{E}}{\partial{w}} = -2 \phi^T (y - \phi w)\]
+\[\frac{\partial{E}}{\partial{w}} = -2 \phi^\intercal (y - \phi w)\]
 
-\[\frac{\partial^2 E}{\partial{w}\partial{w^T}} = \phi^T \phi\]
+\[\frac{\partial^2 E}{\partial{w}\partial{w^\intercal}} = \phi^\intercal \phi\]
 
-<p>If \(\phi\) has full column rank, and hence \(\phi^T \phi\) is positive 
-definite, we set the first derivative to zero</p>
+<p>If \(\phi\) has full column rank, \(\phi^\intercal \phi\) is positive definite, we set 
+the first derivative to zero</p>
 
-\[\phi^T (y - \phi w) = 0\]
+\[\phi^\intercal (y - \phi w) = 0\]
 
 <p>To obtain the solution</p>
 
-\[\hat{w} = (\phi^T \phi)^{-1} \phi^T y\]
+\[\hat{w} = (\phi^\intercal \phi)^{-1} \phi^\intercal y\]
 <h2><a name="ch10-GeometricInterpretationofLeastSquaresSolution"></a>Geometric Interpretation of Least Squares Solution</h2>
-      <p><img src="/DigitalCognitionBook/assets/images/geometric_interpretation.svg" alt="Geometric interpretation of least squares solution" /></p>
+      <p><img src="/DigitalCognitionBook/assets/images/geometric_interpretation.svg" alt="Geometric interpretation of least squares solution" width="80%" height="80%" /></p>
 
 <p>In the above figure, the \(\phi_1(x)\), \(\phi_2(x)\), …, \(\phi_p(x)\) are 
 the vectors corresponding to each column of \(\phi(x)\). The shaded blue 
@@ -402,31 +412,31 @@ other words, the error will be minimum when \((y - \hat{y}) \perp \phi_1(x)\),
 \((y - \hat{y}) \perp \phi_2(x)\), …, \((y - \hat{y}) \perp \phi_p(x)\). 
 This can be exressed in terms of dot product as:</p>
 
-\[(y - \hat{y})^T \phi_1(x)\\
-(y - \hat{y})^T \phi_2(x)\\
+\[(y - \hat{y})^\intercal \phi_1(x)\\
+(y - \hat{y})^\intercal \phi_2(x)\\
 . \\
 . \\
 . \\
-(y - \hat{y})^T \phi_p(x)\\\]
+(y - \hat{y})^\intercal \phi_p(x)\\\]
 
 <p>In matrix form,</p>
 
-\[(y - \hat{y})^T \phi = \bar{0}\]
+\[(y - \hat{y})^\intercal \phi = \bar{0}\]
 
 <p>Substituting value of \(\hat{y}\),</p>
 
-\[(y - \phi \hat{w})^T \phi = (\bar{0})^T\\
-y^T \phi - \hat{w}^T \phi^T \phi = (\bar{0})^T\\
-\phi^T y - \phi^T \phi \hat{w} = \bar{0}\\
-\phi^T \phi \hat{w} = \phi^T y\]
+\[(y - \phi \hat{w})^\intercal \phi = (\bar{0})^\intercal\\
+y^\intercal \phi - \hat{w}^\intercal \phi^\intercal \phi = (\bar{0})^\intercal\\
+\phi^\intercal y - \phi^\intercal \phi \hat{w} = \bar{0}\\
+\phi^\intercal \phi \hat{w} = \phi^\intercal y\]
 
 <p>Thus,</p>
 
-\[\hat{w} = (\phi^T \phi)^{-1} \phi^T y\]
+\[\hat{w} = (\phi^\intercal \phi)^{-1} \phi^\intercal y\]
 
 <p>This is same result which we obtained earlier.</p>
 
-<p>It is important to note that \(\phi^T \phi\) is invertible only when \(\phi\) 
+<p>It is important to note that \(\phi^\intercal \phi\) is invertible only when \(\phi\) 
 has full column rank.</p>
 <h2><a name="ch10-MatrixRank"></a>Matrix Rank</h2>
       <p>A \(m \times n\) matrix has \(m\) rows, each containing \(n\) elements each. 
@@ -541,14 +551,14 @@ obtained by linear combination of columns of the matrix. Column space
 \(\mathcal(C)\) of a \(m \times n\) matrix \(\phi = [ \phi_1 \; \phi_2 \; ... 
 \;\phi_n ]\) where \(\phi_i\)]s are the columns of \(\phi\) is given as</p>
 
-\[\mathcal{C}(\phi) = \{ x \mid x = w^T \phi \; \forall \; w \in 
+\[\mathcal{C}(\phi) = \{ x \mid x = w^\intercal \phi \; \forall \; w \in 
 \mathbb{R}^m\}\]
 
 <p>Geometrically, column space is the plane containing \(\phi_1\), \(\phi_2\), 
 …, \(\phi_n\).</p>
 
 <h3 id="lemma">Lemma</h3>
-<p>A matrix \(\phi^T \phi\) is invertible if and only if \(\phi\) is full column 
+<p>A matrix \(\phi^\intercal \phi\) is invertible if and only if \(\phi\) is full column 
 rank.</p>
 
 <p><strong>Proof:</strong></p>
@@ -562,30 +572,30 @@ and</p>
 
 \[\phi x = \bar{0}\]
 
-<p>Pre-multiplying both sides by \(\phi^T\),</p>
+<p>Pre-multiplying both sides by \(\phi^\intercal\),</p>
 
-\[\phi^T \phi x = \bar{0}\]
+\[\phi^\intercal \phi x = \bar{0}\]
 
-<p>Thus, the matrix \(\phi^T \phi\) is not full rank and hence not invertible.</p>
+<p>Thus, the matrix \(\phi^\intercal \phi\) is not full rank and hence not invertible.</p>
 
 <p><em>Part 2:</em></p>
 
-<p>Lets assume that \(\phi\) is full column rank and \(\phi^T \phi\) is non 
+<p>Lets assume that \(\phi\) is full column rank and \(\phi^\intercal \phi\) is non 
 invertible.</p>
 
 <p>Then, it means that there exists a vector \(x\) such that \(x \neq \bar{0}\) 
 and</p>
 
-\[\phi^T \phi x = \bar{0}\]
+\[\phi^\intercal \phi x = \bar{0}\]
 
-<p>Pre-multiplying both sides by \(x^T\),</p>
+<p>Pre-multiplying both sides by \(x^\intercal\),</p>
 
-\[x^T \phi^T \phi x = 0\\
-(\phi x)^T \phi x = 0\\
+\[x^\intercal \phi^\intercal \phi x = 0\\
+(\phi x)^\intercal \phi x = 0\\
 \phi x = \bar{0}\]
 
 <p>Thus, the matrix \(\phi\) is not full column rank. Our assumption is 
-incorrect. \(\phi^T \phi\) must be invertible.</p>
+incorrect. \(\phi^\intercal \phi\) must be invertible.</p>
 <h2><a name="ch10-MaximumLikelihoodEstimate"></a>Maximum Likelihood Estimate</h2>
       <p>Suresh tosses a coin 1000 times and he observes heads 400 times.</p>
 
@@ -622,10 +632,10 @@ that it is a function of the unknown parameters \(\theta\).</p>
 probability of getting a heads in this toss. We can estimate the probability 
 of observing heads as</p>
 
-\[P(Heads) = \frac{400}{1000} = 0.4 = \hat{p}_{MLE}\]
+\[P(Heads) = \frac{400}{1000} = 0.4 = \hat{p}_{\tiny{MLE}}\]
 
 <p>However, it is important to note that we do not know the exact probability of 
-getting the heads \(p\). \(\hat{p}_{MLE}\) is an estimate that maximises the 
+getting the heads \(p\). \(\hat{p}_{\tiny{MLE}}\) is an estimate that maximises the 
 likelihood of observing the outcomes that we already saw. In other words, it 
 the value of the parameter which is the most reasonable explantion for our 
 observations.</p>
@@ -654,6 +664,134 @@ actually proportional to the value of pdf
 <p>In this situation, we cannot technically assert that we are finding the 
 parameter value that maximizes the probability that we observe \(O\) as we 
 maximize the PDF associated with the observed outcomes \(O\).</p>
+<h2><a name="ch10-ProbabilisticInterpretation"></a>Probabilistic Interpretation</h2>
+      <p>From the discussion so far, we know that \(y\) is a function of \(\phi(x)\). 
+But, this function is only approximate, in the sense that it does not give us 
+the exact value of \(y_i\)’s. We can see in the TV commercials example that 
+the deviations \(y_1-\hat{y_1}\), \(y_2-\hat{y_2}\), …, \(y_n-\hat{y_n}\) 
+appear to be random i.e. they do not seem to follow any relation. Let’s denote 
+this deviation by \(\varepsilon_1\), \(\varepsilon_1\), \(\varepsilon_2\), 
+…, \(\varepsilon_n\). Then, it is reasonable to assume that each 
+\(\varepsilon_i\) is a random variable which follows a Gaussian distribution 
+with mean 0 and variance \(\sigma^2\) denoted as \(\mathcal{N}(0, \sigma^2)\). 
+Then,</p>
+
+\[y_i - \hat{y_i} = \varepsilon_i\\
+y_i = \hat{y_i} + \varepsilon_i\\
+y_i = w^\intercal \phi(x_i) + \varepsilon_i\]
+
+<p>This means that each \(y_i\) follows a Gaussian distribution with mean 
+\(\mu = w^\intercal \phi(x_i)\) and variance \(\sigma^2\). This can be denoted 
+as \(y_i ~ \mathcal{N}(\mu, \sigma^2)\). Thus, we can describe this 
+observation as the following probabilistic model</p>
+
+\[\begin{align}
+P(y_i|w, x_j, \sigma^2) &amp;= \mathcal{N}(w^\intercal \phi(x_i), \sigma^2)\\
+&amp;= \frac{1}{\sqrt{2 \pi}\sigma} e^{-\frac{1}{2}(\frac{y_i-w^\intercal\phi(x_i)}{\sigma})^2}
+\end{align}\]
+
+<p>\(y\) is a vector of elements \(y_1\), \(y_2\), …, \(y_n\). Moreover, in the 
+dataset \(\mathcal{D}\), picking a sample \((x_i, y_i)\) from the population 
+does not affect the chances of any other point ending up in the dataset. In 
+other words, \(y_1\), \(y_2\), …, \(y_n\) are independent random valiables. 
+Since, each \(y_i \sim \mathcal{N}(\mu, \sigma^2)\), they are indentically 
+distributed. Thus,</p>
+
+\[P(y|w, x, \sigma^2) = \prod_{i = 1}^{n} P(y_i|w, x_j, \sigma^2)\]
+
+<p>and</p>
+
+\[\mathbb{E}(y(w, x)) = \phi(x) w\]
+
+<p>We can formulate the regression problem as:<br />
+Given the dataset \(\mathcal{D}\), find the most likelihood estimate 
+\(\hat{w}_{\tiny{MLE}}\). In other words, find an estimate 
+\(\hat{w}_{\tiny{MLE}}\) which is most likely to produce the \(y\) that we 
+observed in \(\mathcal{D}\).</p>
+
+<p>The likelihood of observing data \(\mathcal{D}\) is denoted by 
+\(L(w \mid \mathcal{D})\). It is give as</p>
+
+\[\begin{align}
+L(w \mid \mathcal{D}) &amp;= P(\mathcal{D} \mid w)\\
+&amp;= P(y \mid x, w, \sigma^2)
+&amp;= \prod_{i = 1}^{n} \frac{1}{\sqrt{2 \pi}\sigma} e^{-\frac{1}{2}(\frac{y_i-w^\intercal\phi(x_i)}{\sigma})^2}
+\end{align}\]
+
+<p>Quite tedious expression, huh? Let’s take natural logs of both sides</p>
+
+\[\begin{align}
+\ln(L(w \mid \mathcal{D})) &amp;= \ln(\prod_{i = 1}^{n} \frac{1}{\sqrt{2 \pi}\sigma} e^{-\frac{1}{2}(\frac{y_i-w^\intercal\phi(x_i)}{\sigma})^2})\\
+LL(w \mid \mathcal{D}) &amp;= \sum_{i=1}^{n} \left( ln \left( \frac{1}{\sqrt{2 \pi}\sigma} \right) -\frac{1}{2} \left( \frac{y_i-w^\intercal\phi(x_i)}{\sigma} \right)^2 \right)\\
+&amp;= \sum_{i=1}^{n} ln \left( \frac{1}{\sqrt{2 \pi \sigma^2}} \right) - \sum_{i=1}^{n} \frac{1}{2 \sigma^2} (y_i-w^\intercal\phi(x_i))^2\\
+&amp;= -\frac{n}{2} ln(2 \pi \sigma^2) - \frac{1}{2 \sigma^2} \sum_{i=1}^{n} (y_i-w^\intercal\phi(x_i))^2
+\end{align}\]
+
+<p>\(LL(w \mid \mathcal{D})\) is called the log likelihood function. Since log is 
+a monotonically increasing function, it preserves the location of maximums and 
+minimums when log is used a transform. Hence, maximizing 
+\(L(w \mid \mathcal{D})\) is equivalent to maximizing 
+\(LL(w \mid \mathcal{D})\). Maximizing log likelihood function instead of 
+likelihood function is known as the log optimization trick. The log likelihood 
+function can also be expressed in terms of sum of squares error 
+\(E(f(\phi(x), w), \mathcal{D})\) as</p>
+
+\[\begin{align}
+LL(w \mid \mathcal{D}) &amp;= -\frac{n}{2} ln(2 \pi \sigma^2) - \frac{1}{2 \sigma^2} \sum_{i=1}^{n} (y_i-w^\intercal\phi(x_i))^2\\
+&amp;= -\frac{n}{2} ln(2 \pi \sigma^2) - \frac{1}{2 \sigma^2} E(f(\phi(x), w), \mathcal{D})
+\end{align}\]
+
+<p>Thus, maximizing \(LL(w \mid \mathcal{D})\) is equivalent to minimizing 
+\(E(f(\phi(x), w), \mathcal{D})\) since 
+\(LL(w \mid \mathcal{D}) = - c_1 E(f(\phi(x), w), \mathcal{D}) + c_2\). 
+Therefore, maximizing likelihood function \(L(w \mid \mathcal{D})\) is 
+equivalent to minimizing the sum of squares error 
+\(E(f(\phi(x), w), \mathcal{D})\).</p>
+
+<p>The maximum likelihood estimator is given by</p>
+
+\[\hat{w}_{\tiny{MLE}} = \underset{w}{\operatorname{argmax}} P(\mathcal{D} \mid w)\]
+
+<p>This can be formulated as a minimization problem</p>
+
+\[\hat{w}_{\tiny{MLE}} = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})\]
+
+<p>This is the same minimization problem that we solved for getting the least 
+squares solution. Hence, finding maximum likelihood estimator is same as the 
+least squares solution of the linear regression problem. Therefore, most 
+likelihood estimate is</p>
+
+\[\hat{w}_{\tiny{MLE}} = (\phi^\intercal \phi)^{-1} \phi^\intercal y\]
+<h2><a name="ch10-Entropy"></a>Entropy</h2>
+      <p>The entropy of a random variable is measure of its uncertainity. Some texts also refer it as a measure of information content.</p>
+
+<p>But, what is the meaning of uncertainity or information content? Let’s understand with an example
+<img src="/DigitalCognitionBook/assets/images/entropy_example.svg" alt="Entropy example" width="80%" height="80%" />
+We have two random alphabet generator machines which generate one character from the set \(\{A, B, C, D\}\). The probabilities of generating each alphabet is, however, different for both machines. For machine 1, each alphabet is equaly likely to be generated i.e. \(P(A) = P(B) = P(C) = P(D) = \frac{1}{4}\). However, for machine 2, probabilities of getting each alphabet is \(P(A) = \frac{1}{2}\), \(P(B) = \frac{1}{4}\), \(P(C) = \frac{1}{8}\) and \(P(D) = \frac{1}{8}\).</p>
+
+<p>But, you cannot directly generate a alphabet from these machines. As it turns out, these machines have overly complicated controls for a seemingly simple task. Hence, there is a machine operator who can get the machine to generate a alphabet for you. Machine operator generates an alphabet from the machine but insists that you guess the alphabet correctly by asking some questions only then would he give the alphabet to you. Given the absurd situation you have found yourselves in, you would like to get over with it by asking minimum number of questions to the operator.</p>
+
+<p>Consider the case where you ask operator to generate an aplhabet from machine 1.
+<img src="/DigitalCognitionBook/assets/images/entropy_machine1.svg" alt="Questions machine 1" width="50%" height="50%" />
+You ask the first question to operator, “Is the alphabet A or B?”. The operator says yes. Then you ask, “Is the alphabet A?”. The operator respond no. Hence, you tell the operator that the machine generated the alphabet B. The operator then hands it over to you.</p>
+
+<p>Please note that to guess the alphabet correctly, you had to ask two questions. From the decision tree in the above image, you can see that even if the operator responded differently for any of the questions, you would still need to ask two questions. Thus, if you repeat this experiment for 100 times, you would need to ask 200 questions i.e. on an average 2 questions per trial.</p>
+
+<p>Let’s see what happens for machine 2. Since, probability of getting A is highest, you should start asking questions from A and then move to alphabets with lower probability of occurrence. This will ensure that if you repeat the trial sevel times, you will be asking minimum number of question.
+<img src="/DigitalCognitionBook/assets/images/entropy_machine2.svg" alt="Questions machine 2" width="50%" height="50%" />
+You ask the operator to get a new alphabet from the machine and start with a question “Is the alphabet A?”. The operator responds with a no. Then, you ask, “Is the alphabet B?”. The operator says yes. The operator hands the alphabet over to you as you guessed it correctly.</p>
+
+<p>Note that you had to ask two questions to correctly guess the alphabet B. However, you can see that in the decision tree, you would need to ask just one question if the alphabet generated by the machine 2 was A. Similarly, you would need to ask three questions to correctly guess C or D.</p>
+
+<p>If you repeat this experiment 800 times, you can expect to see 400 A’s, 200 B’s, 100 C’s and 100 D’s. Thus the average number of questions that you would need to ask is \(\frac{400 \cdot 1 + 200 \cdot 2 + 100 \cdot 3 + 100 \cdot 3}{800} = 1.75\).</p>
+
+<p>The more uncertain the outcome of an experiment is, more number of questions you would ask to guess the outcome correctly. Thus the average number of questions you ask is the measure of uncertainity. This can also be termed as information content. If the probability of occurence of an event is \(p\) then you would more or less (not exactly always) be asking \(-\log_{2}(p)\) questions. So, the average number of questions that you would be asking is entropy.</p>
+
+<p>Given a discrete random variable \(X\), with possible outcomes \(x_1\), …, \(x_n\), which occur with probability \(P(x_1)\), …, \(P(x_n)\), the entropy of \(X\) is formally defined as:</p>
+
+\[H(X) = - \sum_{i=1}^{n} P(x_i) \log_{2}(P(x_i))\]
+
+<p>Of all the distributions with variance \(\sigma^2\), Gaussian distribution has the highest entropy. It models the highest uncertainity. Hence, it usually chosen to model unknown random variables. This is the reason we chose \(\mathcal{N}(0, \sigma^2)\) to model the error \(\varepsilon\).</p>
 </div>
 
     </main>
