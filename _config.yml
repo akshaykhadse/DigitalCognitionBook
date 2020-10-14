@@ -28,6 +28,7 @@ github:
   repo: https://github.com/akshaykhadse/DigitalCognitionBook
 
 sidebar_home_link:  false
+google_analytics: UA-175939743-1
 
 markdown: kramdown
 kramdown:
