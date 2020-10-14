@@ -42,6 +42,8 @@ Let's plot this line on our data
 We can see that the line passes more or less through the middle of the data 
 points.
 
+You can refer the [linear regression notebook](https://github.com/akshaykhadse/DigitalCognitionBook/blob/code/01_linear_regression/01_linear_regression.ipynb) for complete example.
+
 In this example, we had just one value as input i.e. the $$x$$ was scalar. 
 However, there might be seveal factors which influence the sales figures like
 * Time of investment
