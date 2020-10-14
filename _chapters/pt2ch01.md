@@ -1,8 +1,8 @@
 ---
-part: A
+part: 2
 layout: chapter
 chapter: 01
-title: Random Variables
+title: Articles
 ---
 
 

@@ -1,5 +1,6 @@
 ---
-chapter: 10
+part: 3
+chapter: 01
 title: Geometric Interpretation of Least Squares Solution
 ---
 ![Geometric interpretation of least squares solution]({{ "/assets/images/geometric_interpretation.svg" | relative_url }}){:width="80%" height="80%"}

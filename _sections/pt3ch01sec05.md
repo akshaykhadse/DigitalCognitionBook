@@ -1,5 +1,6 @@
 ---
-chapter: 10
+part: 3
+chapter: 01
 title: Overfitting
 ---
 Consider the TV commercial example taht we saw while begininning this chapter. 

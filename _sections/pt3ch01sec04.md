@@ -1,5 +1,6 @@
 ---
-chapter: 10
+part: 3
+chapter: 01
 title: Probabilistic Interpretation
 ---
 From the discussion so far, we know that $$y$$ is a function of $$\phi(x)$$. 

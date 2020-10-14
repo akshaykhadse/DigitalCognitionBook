@@ -1,7 +1,6 @@
 ---
-part: B
+part: 2
 layout: part
-title: Machine Learning
+title: Statistics
 ---
-
-This part explores the foundations of Machine Learning.
+This part explores satistics and probability.

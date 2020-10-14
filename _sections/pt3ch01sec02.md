@@ -1,5 +1,6 @@
 ---
-chapter: 10
+part: 3
+chapter: 01
 title: Least Squares Solution
 ---
 *The following discussion relies on matrix calculus. If you are not comfortable 

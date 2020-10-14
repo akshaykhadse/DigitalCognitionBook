@@ -1,5 +1,6 @@
 ---
-chapter: 10
+part: 3
+chapter: 01
 title: Simple Linear Regression
 ---
 Suppose we have a dataset $$\mathcal{D}$$ which contains examples 

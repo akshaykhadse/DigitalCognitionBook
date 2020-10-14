@@ -1,5 +1,6 @@
 ---
-chapter: 10
+part: 2
+chapter: 01
 title: Maximum Likelihood Estimate
 ---
 Suresh tosses a coin 1000 times and he observes heads 400 times.

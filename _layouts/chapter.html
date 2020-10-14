@@ -9,9 +9,11 @@ layout: default
   {{ content }}
 
   {%- for section in site.sections -%}
-    {%- if section.chapter == page.chapter -%}
-      <h2><a name="ch{{ page.chapter }}-{{ section.title | remove:" " }}"></a>{{ section.title }}</h2>
-      {{ section.output }}
+    {%- if section.part == page.part -%}
+      {%- if section.chapter == page.chapter -%}
+        <h2><a name="pt{{ page.part }}ch{{ page.chapter }}-{{ section.title | remove:" " }}"></a>{{ section.title }}</h2>
+        {{ section.output }}
+      {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
 

@@ -1,5 +1,6 @@
 ---
-chapter: 10
+part: 2
+chapter: 01
 title: Entropy
 ---
 The entropy of a random variable is measure of its uncertainity. Some texts 

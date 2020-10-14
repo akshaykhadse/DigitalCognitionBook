@@ -1,7 +1,6 @@
 ---
-part: A
+part: 1
 layout: part
-title: Statistics
+title: Linear Algebra
 ---
-
-This part explores satistics and probability.
+This part explores Linear Algebra.

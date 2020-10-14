@@ -27,7 +27,7 @@ plugins:
 github:
   repo: https://github.com/akshaykhadse/DigitalCognitionBook
 
-sidebar_home_link:  true
+sidebar_home_link:  false
 
 markdown: kramdown
 kramdown:

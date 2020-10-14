@@ -1,5 +1,6 @@
 ---
-chapter: 10
+part: 1
+chapter: 01
 title: Matrix Rank
 ---
 A $$m \times n$$ matrix has $$m$$ rows, each containing $$n$$ elements each. 

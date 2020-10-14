@@ -1,7 +1,7 @@
 ---
-part: B
+part: 3
 layout: chapter
-chapter: 10
+chapter: 01
 title: Linear Regression
 ---
 
