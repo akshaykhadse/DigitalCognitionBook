@@ -169,6 +169,30 @@ incorrect. \(\phi^\intercal \phi\) must be invertible.</p>
 </code></pre></div></div>
 <h2>Articles</h2>
 
+<h3>Beta Distribution</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;The beta distribution is a family of continuous probability distributions defined on the interval \([0, 1]\) parameterized by two positive shape parameters, denoted by \(\alpha\) and \(\beta\), that control the shape of the distribution.&lt;/p&gt;
+</code></pre></div></div>
+
+<p>This is denoted as \(X \sim \operatorname{Beta}(\alpha, \beta)\).</p>
+
+<p>The probability density function of Beta distribution is given by</p>
+
+<p>[f(x \mid \alpha, \beta) = \frac{x^{\alpha-1}(1-x)^{\beta-1}}{\mathcal{B}(\alpha, \beta)}]</p>
+
+<p>Here, \(\mathcal{B}(\alpha, \beta)\) is called the Beta function and it is given by</p>
+
+<p>[\begin{align}
+\mathcal{B}(\alpha,\beta) &amp;= \int_{0}^{1} x^{\alpha-1}(1-p)^{\beta -1} dx<br />
+&amp;= \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}
+\end{align}]</p>
+
+<p>where, \(\Gamma(n) = (n-1)!\) for all \(n \in \mathbb{Z}^{+}\).</p>
+
+<p>Let’s see the effect of \(\beta\) on the PDF
+<img src="/DigitalCognitionBook/assets/images/beta_dustribution_beta.gif" alt="Beta Distribution" width="80%" height="80%" /></p>
+
+<p>The effect of \(\alpha\) and \(\beta\) on the PDF is summarized in the following image
+<img src="/DigitalCognitionBook/assets/images/beta_distribution.svg" alt="Beta Distribution" width="80%" height="80%" /></p>
 <h3>Maximum Likelihood Estimate</h3>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;Suresh tosses a coin 1000 times and he observes heads 400 times.&lt;/p&gt;
 </code></pre></div></div>
@@ -312,7 +336,7 @@ random variables are said to be independent and identically distributed
 
 <p>Now, if we observe that \(X_i = x_i\), \(X_2 = x_2\), …, \(X_n = x_n\). 
 Then, the probability of making this observation is given by a function 
-\(f_{\thata}(x_1, x_2, ..., x_n)\). This is known as joint probability mass 
+\(f_{\theta}(x_1, x_2, ..., x_n)\). This is known as joint probability mass 
 function (for discrete random variables) and probability mass function (for 
 continous random variables). It is given as</p>
 
@@ -333,7 +357,7 @@ L(\theta \mid \mathcal{D}) &amp;= L(\theta \mid x_1, x_2, …, x_n)<br />
 <p>Thus the maximum likihood extimator of \(\theta\) is given by</p>
 
 <p>[\begin{align}
-\hat{\theta}<em>{\tiny{MLE}} = \underset{\theta}{\operatorname{argmax}} L(\theta \mid \mathcal{D})<br />
+\hat{\theta}<em>{\tiny{MLE}} &amp;= \underset{\theta}{\operatorname{argmax}} L(\theta \mid \mathcal{D})<br />
 &amp;= \underset{\theta}{\operatorname{argmax}} \prod^{i=1}{n} f</em>{theta}(x_i)
 \end{align}]</p>
 <h3>Entropy</h3>
@@ -413,6 +437,58 @@ the highest entropy. It models the highest uncertainity. Hence, it usually
 chosen to model unknown random variables as it encapsulates the worst case 
 scenario of maximum uncertainity. This is the reason we chose 
 \(\mathcal{N}(0, \sigma^2)\) to model the error \(\varepsilon\).</p>
+<h3>Maximum A-Posteriori Estimate</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;Consider the exmaple of coin toss which we saw earlier. Let’s say Suresh gets himself a new coin from the mint. The coin has one face heads and other tails. Since coin is brand new, he believes that the coin is fair. So, getting heads and tails is equally likely i.e. \(P(H) = P(T) = 0.5\).&lt;/p&gt;
+</code></pre></div></div>
+
+<p>Now, Suresh tosses the coins four times and he obeserves heads all four times. What is the porbability of getting heads in the next toss? Well, if we were looking at the maximum likelihood estimate, then the answer would be \(\hat{P}(H) = 4/4 = 1\).</p>
+
+<p>Does this mean that tails is improbable? We know that it would be practically possible to get heads all the time only if both the faces of the coin were heads (and we were in the movie Sholay). This is clearly not true for our coin, it has heads on one face and tails on the other. This means that Suresh’s belif that the coin is fair is not correct. However, it does not mean that the tails is improbabe. So, is there a way through which Suresh can update his belif that \(\hat{p} = 0.5\) by incorpating the information he recieved by tossing coin four times?</p>
+
+<p>Yes. Let me introduce you to Bayesian Inference. Let’s say that the \(X\) is governed by a distribution whose parameter is \(\theta\). Under the Bayesian Inference, you assume that \(\theta\) in itself is another random variable. The you can incorporate your belif about \(\theta\) via assuming a probability distribution that governs \(\theta\). We will represent this distribution via a PDF or PMF \(g(\theta)\). The probability distribution of \(\theta\) which incorporates your belif \(g(\theta)\) is called prior because this denotes your belif about \(\theta\) prior to observing evidence or data \(\mathcal{D}\).</p>
+
+<p>As we saw with Suresh’s coin toss example, we may encounter some evidence or data \(\mathcal{D}\) which can be used to update our original belif. This evidence can be encorporated in a distribution denoted by \(f(x \mid \theta)\). No fancy names for this one.</p>
+
+<p>Then we can conclude the following from the Bayes’ rule</p>
+
+<p>[f(\theta \mid x) = \frac{f(x \mid \theta) g(\theta)}{\int_{\Theta} f(x \mid t) g(t) dt}]</p>
+
+<p>where \(\Theta\) is the domain of function \(g(\theta)\). The set of values over which a function is defined is called domain of that function. In other words, \(\Theta\) deontes range of \(\theta\) over which function \(g(\theta)\) is defined.</p>
+
+<p>In this equation, the denominator does not depend on the \(\theta\). Therefore, it is constant. We can see that maximizing \(f(\theta \mid x)\) is same as maximizing \(f(x \mid \theta) g(\theta)\). Thus we can write</p>
+
+<p>[f(\theta \mid x) \propto f(x \mid \theta) g(\theta)]</p>
+
+<p>In this equation \(f(\theta \mid x)\) is known as posterior distribution of \(\theta\).</p>
+
+<p>The maximum a-posteriori estimate is the value of \(\theta\) which maximises the posterior distribution of \(\theta\). This is given as</p>
+
+<p>[\begin{align}
+\hat{\theta}_{MAP} &amp;= \underset{\theta}{\operatorname{argmax}} f(\theta \mid x)<br />
+&amp;= \underset{\theta}{\operatorname{argmax}} f(x \mid \theta) g(\theta)
+\end{align}]</p>
+
+<p>Observe that the MAP estimate of \(\theta\)  coincides with the ML estimate when the prior \(g\) is uniform (that is, a constant function).</p>
+
+<p>Let’s get back to Suresh. Coin toss is an example of Binomial distribution. Let probability of getting heads in a single coin toss be \(p\). The probablity of observing \(h\) heads in \(n\) tosses is given by</p>
+
+<p>[f(h \mid p) = {}^{n}C_{h} p^h (1-p)^{n-h}]</p>
+
+<p>Assume that \(p\) is also a random variable. We will model the prior of \(p\) as a Beta distribution (beacuse Beta is the conjugate prior of Binomial. This will be discussed later when explaining conjugate priors) with parameter \(\alpha = 10\) and \(\beta = 10\). This is shown in the following figure</p>
+
+<p><img src="/DigitalCognitionBook/assets/images/beta_distribution_10_10.png" alt="" width="80%" height="80%" /></p>
+
+<p>Observe that this mound shaped curve has peak at \(x = 0.5\) and looks quite similar to the Gassian distribution. Thus, this distribution incorporates the Suresh’s belief that the coin is fair. Thus,</p>
+
+<p>[g(p) = \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}}]</p>
+
+<p>Now, since \(f(\theta \mid h) \propto f(h \mid \theta) g(\theta)\),</p>
+
+<p>[\begin{align}
+\hat{p}<em>{\tiny{MAP}} &amp;= \underset{p}{\operatorname{argmax}} f(p \mid x)<br />
+&amp;= \underset{p}{\operatorname{argmax}} f(x \mid p) g(p)<br />
+&amp;= \underset{p}{\operatorname{argmax}} {}^{n}C</em>{h} p^h (1-p)^{n-h}  p^{\alpha-1}(1-p)^{\beta-1} \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
+\end{align}]</p>
 <h1>Machine Learning</h1>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt;This part explores the foundations of Machine Learning.&lt;/p&gt;
 </code></pre></div></div>
