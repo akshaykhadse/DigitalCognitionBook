@@ -13,7 +13,7 @@ if [ $1 = github ]
     echo "::set-env name=BOOK_DIR::_book" >> $GITHUB_ENV
     echo "::set-env name=HEADER_FILE::header_includes.tex" >> $GITHUB_ENV
     echo "::set-env name=PUBLISH_NAME::Digital_Cognition" >> $GITHUB_ENV
-    echo "# Set local env vars" >> $GITHUB_ENV
+    echo "# Set local env vars"
   else
     export REPO_URL=https://github.com/akshaykhadse/DigitalCognitionBook.git
     export FILE_NAME=Digital_Cognition
