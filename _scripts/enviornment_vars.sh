@@ -5,15 +5,15 @@ echo "# Setting enviornment variables"
 if [ $1 = github ]
   then
     echo "# Set env vars in github"
-    echo "::set-env name=REPO_URL::https://github.com/akshaykhadse/DigitalCognitionBook.git"
-    echo "::set-env name=FILE_NAME::Digital_Cognition"
-    echo "::set-env name=BOOK_LOCAL_PATH::_site/book"
-    echo "::set-env name=BOOK_DOWNLOAD_PATH::https://akshaykhadse.github.io/DigitalCognitionBook/book"
-    echo "::set-env name=BOOK_HTML::book.html"
-    echo "::set-env name=BOOK_DIR::_book"
-    echo "::set-env name=HEADER_FILE::header_includes.tex"
-    echo "::set-env name=PUBLISH_NAME::Digital_Cognition"
-    echo "# Set local env vars"
+    echo "::set-env name=REPO_URL::https://github.com/akshaykhadse/DigitalCognitionBook.git" >> $GITHUB_ENV
+    echo "::set-env name=FILE_NAME::Digital_Cognition" >> $GITHUB_ENV
+    echo "::set-env name=BOOK_LOCAL_PATH::_site/book" >> $GITHUB_ENV
+    echo "::set-env name=BOOK_DOWNLOAD_PATH::https://akshaykhadse.github.io/DigitalCognitionBook/book" >> $GITHUB_ENV
+    echo "::set-env name=BOOK_HTML::book.html" >> $GITHUB_ENV
+    echo "::set-env name=BOOK_DIR::_book" >> $GITHUB_ENV
+    echo "::set-env name=HEADER_FILE::header_includes.tex" >> $GITHUB_ENV
+    echo "::set-env name=PUBLISH_NAME::Digital_Cognition" >> $GITHUB_ENV
+    echo "# Set local env vars" >> $GITHUB_ENV
   else
     export REPO_URL=https://github.com/akshaykhadse/DigitalCognitionBook.git
     export FILE_NAME=Digital_Cognition
