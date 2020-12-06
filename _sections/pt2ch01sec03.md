@@ -154,7 +154,7 @@ random variables are said to be independent and identically distributed
 
 Now, if we observe that $$X_i = x_i$$, $$X_2 = x_2$$, ..., $$X_n = x_n$$. 
 Then, the probability of making this observation is given by a function 
-$$f_{\thata}(x_1, x_2, ..., x_n)$$. This is known as joint probability mass 
+$$f_{\theta}(x_1, x_2, ..., x_n)$$. This is known as joint probability mass 
 function (for discrete random variables) and probability mass function (for 
 continous random variables). It is given as
 
@@ -180,7 +180,7 @@ Thus the maximum likihood extimator of $$\theta$$ is given by
 
 $$
 \begin{align}
-\hat{\theta}_{\tiny{MLE}} = \underset{\theta}{\operatorname{argmax}} L(\theta \mid \mathcal{D})\\
+\hat{\theta}_{\tiny{MLE}} &= \underset{\theta}{\operatorname{argmax}} L(\theta \mid \mathcal{D})\\
 &= \underset{\theta}{\operatorname{argmax}} \prod^{i=1}{n} f_{theta}(x_i)
 \end{align}
 $$
