@@ -20,17 +20,17 @@ lies in the same hyperplane as $$\phi_1(x)$$, $$\phi_2(x)$$, ...,
 $$\phi_p(x)$$.
 
 $$y - \hat{y}$$ is the vector difference of the estimated values 
-$$\hat{y}_i$$'s and the actual observations $$y_i$$'s. The maginitude of this 
+$$\hat{y}_i$$'s and the actual observations $$y_i$$'s. The magnitude of this 
 vector is given by
 
 $$\lvert y - \hat{y} \rvert = \sum_{i = 1}^{n} (y_i - \hat{y}_i)^2$$
 
-The maginitude of $$y - \hat{y}$$ is same as the sum of squared error. This 
-maginitude will be minimum when the vector $$y - \hat{y}$$ is perpendicular to 
+The magnitude of $$y - \hat{y}$$ is same as the sum of squared error. This 
+magnitude will be minimum when the vector $$y - \hat{y}$$ is perpendicular to 
 the hyperplane containing $$\phi_1(x)$$, $$\phi_2(x)$$, ..., $$\phi_p(x)$$. In 
 other words, the error will be minimum when $$(y - \hat{y}) \perp \phi_1(x)$$, 
 $$(y - \hat{y}) \perp \phi_2(x)$$, ..., $$(y - \hat{y}) \perp \phi_p(x)$$. 
-This can be exressed in terms of dot product as:
+This can be expressed in terms of dot product as:
 
 $$
 (y - \hat{y})^\intercal \phi_1(x)\\

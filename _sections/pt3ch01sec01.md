@@ -36,7 +36,7 @@ $$
 
 $$i^{th}$$ row of this matrix is represented as $$\phi(x_i)$$. Similarly, 
 $$i^{th}$$ column of this matrix can be represented as $$\phi_i(x)$$. This is 
-also known as $$i^{th}$$ feature of the datset $$\mathcal{D}$$.
+also known as $$i^{th}$$ feature of the dataset $$\mathcal{D}$$.
 
 Let's also define a $$n \times 1$$ matrix $$y$$ as
 
@@ -97,7 +97,7 @@ $$ y = \phi(x) w $$
 
 The $$y$$ is linear combination of columns of matrix $$\phi$$ because 
 $$i^{th}$$ column of $$\phi$$ is multiplied by $$w_i$$. But this does not mean 
-that linear regression is naievely linear. We can inject nonlinearities via 
+that linear regression is naively linear. We can inject non-linearities via 
 the features/basis functions $$\phi_i$$s. For example, we could have used a 
 function $$\phi(x_i) = x_i^2$$ in the TV commercial example. To summarize, 
 $$y$$ is linear in $$\phi$$ and $$w$$ but it may or may not be linear with 
@@ -119,16 +119,16 @@ functions i.e. $$f$$ is a linear function.
 When we say best predictor, we must have a measure which we use to determine 
 goodness of a function. The error function $$E$$ is a measure of deviation of 
 predicted value $$\hat{y}$$ from the observed value $$y$$. Smaller the error, 
-better the predictior function $$f$$. The error $$E$$ is a function of $$f$$ 
+better the prediction function $$f$$. The error $$E$$ is a function of $$f$$ 
 and data $$\mathcal{D}$$. A common error function is Sum of Squared Error. 
 There are different types of linear regression based on what error function is 
-minimized and what classes of fuctions are considered.
+minimized and what classes of functions are considered.
 
 ## Linear Regression Problem
 If we consider the class of linear functions for $$f$$, then 
 $$f(\phi(x), w) = \phi(x)w$$. We can rewrite the above problem as:
 
-Determine parameters $$w$$ for the function $$f(\phi(x), w)$$ which minimises 
+Determine parameters $$w$$ for the function $$f(\phi(x), w)$$ which minimizes 
 the error function $$E(f(\phi(x), w), \mathcal{D})$$.
 
 $$\hat{w} = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})$$

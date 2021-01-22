@@ -42,15 +42,15 @@ $$P(Heads) = \frac{400}{1000} = 0.4 = \hat{\theta}_{\tiny{MLE}}$$
 
 However, it is important to note that we do not know the exact probability of 
 getting the heads $$\theta$$. $$\hat{\theta}_{\tiny{MLE}}$$ is an estimate 
-that maximises the likelihood of observing the outcomes that we already saw. 
+that maximizes the likelihood of observing the outcomes that we already saw. 
 In other words, it the value of the parameter which is the most reasonable 
-explantion for our observations. 
+explanation for our observations. 
 
-It's all good for argument sake, but can we prove this theoritically?
+It's all good for argument sake, but can we prove this theoretically?
 
-We know that tossing a coin 1000 times is a Bernouli trial and the number of 
+We know that tossing a coin 1000 times is a Bernoulli trial and the number of 
 heads (denoted by random variable $$X$$) follows a Binomial distribution. 
-Let's assume that $$\theta$$ is the probablity of getting a head in any single 
+Let's assume that $$\theta$$ is the probability of getting a head in any single 
 coin toss. Thus, probability of getting a tails in single toss will be 
 $$(1-\theta)$$. Hence, the probability of getting $$k$$ heads in $$n$$ coin 
 tosses is given by
@@ -69,7 +69,7 @@ $$
 \end{align}
 $$
 
-Instead of maximizing the likelihood, we will maximise the log of likelihood. 
+Instead of maximizing the likelihood, we will maximize the log of likelihood. 
 Since log is a monotonically increasing function, it preserves the location of 
 maximas and minimas of the original function
 
@@ -117,7 +117,7 @@ This is the same estimate which we calculated initially i.e. $$\hat{\theta}_{\ti
 
 ## Continuous Random Variables
 
-If the stochatistc process has a continous random variable as its outcome, 
+If the stochastic process has a continuos random variable as its outcome, 
 then the situation is similar, with one important difference. We can no longer 
 talk about the probability that we observed $$O$$ given $$\theta$$ because in 
 the continuous case $$P(O \mid \theta)=0$$. Without getting into 
@@ -129,7 +129,7 @@ $$\theta$$ given observed outcomes $$O$$ by maximizing the following function:
 
 $$L(\theta \mid O)=f(O \mid \theta)$$
 
-Our use of the pdf instead of actual probability intutuively makes sense 
+Our use of the pdf instead of actual probability intuitively makes sense 
 because if we compare probabilities of getting a small set of outcome e.g. 
 $$P(300 \leq O \leq 301 \mid \theta)$$ instead of a particular outcome e.g. 
 $$P(O = 300 \mid \theta)$$, then we can see that the probabilities are 
@@ -147,7 +147,7 @@ are independent of each other i.e drawing a sample from the population does
 not affect the chances of getting any other sample. Each random variable is 
 governed by a distribution which follows the probability mass function (in 
 discrete random variables) or probability density function (in case of 
-continous random variabes) $$f_{\theta}(x_i) = f(x_i \mid \theta)$$. This 
+continuos random variables) $$f_{\theta}(x_i) = f(x_i \mid \theta)$$. This 
 means that the distribution is governed by a parameter $$\theta$$. Such 
 random variables are said to be independent and identically distributed 
 (i.i.d).
@@ -156,7 +156,7 @@ Now, if we observe that $$X_i = x_i$$, $$X_2 = x_2$$, ..., $$X_n = x_n$$.
 Then, the probability of making this observation is given by a function 
 $$f_{\theta}(x_1, x_2, ..., x_n)$$. This is known as joint probability mass 
 function (for discrete random variables) and probability mass function (for 
-continous random variables). It is given as
+continuos random variables). It is given as
 
 $$
 \begin{align}
@@ -176,7 +176,7 @@ L(\theta \mid \mathcal{D}) &= L(\theta \mid x_1, x_2, ..., x_n)\\
 \end{align}
 $$
 
-Thus the maximum likihood extimator of $$\theta$$ is given by
+Thus the maximum likelihood estimator of $$\theta$$ is given by
 
 $$
 \begin{align}

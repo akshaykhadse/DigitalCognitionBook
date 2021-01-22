@@ -3,16 +3,16 @@ part: 2
 chapter: 01
 title: Entropy
 ---
-The entropy of a random variable is measure of its uncertainity. Some texts 
+The entropy of a random variable is measure of its uncertainty. Some texts 
 also refer it as a measure of information content.
 
-But, what is the meaning of uncertainity or information content? Let's 
+But, what is the meaning of uncertainty or information content? Let's 
 understand with an example
 ![Entropy example]({{ "/assets/images/entropy_example.svg" | relative_url }}){:width="80%" height="80%"}
 We have two random alphabet generator machines which generate one character 
 from the set $$\{A, B, C, D\}$$. The probabilities of generating each alphabet 
 is, however, different for both machines. For machine 1, each alphabet is 
-equaly likely to be generated i.e. $$P(A) = P(B) = P(C) = P(D) = \frac{1}{4}$$. 
+equally likely to be generated i.e. $$P(A) = P(B) = P(C) = P(D) = \frac{1}{4}$$. 
 However, for machine 2, probabilities of getting each alphabet is 
 $$P(A) = \frac{1}{2}$$, $$P(B) = \frac{1}{4}$$, $$P(C) = \frac{1}{8}$$ and 
 $$P(D) = \frac{1}{8}$$.
@@ -26,7 +26,7 @@ then would he give the alphabet to you. Given the absurd situation you have
 found yourselves in, you would like to get over with it by asking minimum 
 number of questions to the operator.
 
-Consider the case where you ask operator to generate an aplhabet from machine 
+Consider the case where you ask operator to generate an alphabet from machine 
 1.
 ![Questions machine 1]({{ "/assets/images/entropy_machine1.svg" | relative_url }}){:width="50%" height="50%"}
 You ask the first question to operator, "Is the alphabet A or B?". The 
@@ -43,7 +43,7 @@ you would need to ask 200 questions i.e. on an average 2 questions per trial.
 Let's see what happens for machine 2. Since, probability of getting A is 
 highest, you should start asking questions from A and then move to alphabets 
 with lower probability of occurrence. This will ensure that if you repeat the 
-trial sevel times, you will be asking minimum number of question.
+trial several times, you will be asking minimum number of question.
 ![Questions machine 2]({{ "/assets/images/entropy_machine2.svg" | relative_url }}){:width="50%" height="50%"}
 You ask the operator to get a new alphabet from the machine and start with a 
 question "Is the alphabet A?". The operator responds with a no. Then, you ask, 
@@ -62,8 +62,8 @@ $$\frac{400 \cdot 1 + 200 \cdot 2 + 100 \cdot 3 + 100 \cdot 3}{800} = 1.75$$.
 
 The more uncertain the outcome of an experiment is, more number of questions 
 you would ask to guess the outcome correctly. Thus the average number of 
-questions you ask is the measure of uncertainity. This can also be termed as 
-information content. If the probability of occurence of an event is $$p$$ then 
+questions you ask is the measure of uncertainty. This can also be termed as 
+information content. If the probability of occurrence of an event is $$p$$ then 
 you would more or less (not exactly always) be asking $$-\log_{2}(p)$$ 
 questions. So, the average number of questions that you would be asking is 
 entropy.
@@ -75,7 +75,7 @@ of $$X$$ is formally defined as:
 $$H(X) = - \sum_{i=1}^{n} P(x_i) \log_{2}(P(x_i))$$
 
 Of all the distributions with variance $$\sigma^2$$, Gaussian distribution has 
-the highest entropy. It models the highest uncertainity. Hence, it usually 
+the highest entropy. It models the highest uncertainty. Hence, it usually 
 chosen to model unknown random variables as it encapsulates the worst case 
-scenario of maximum uncertainity. This is the reason we chose 
+scenario of maximum uncertainty. This is the reason we chose 
 $$\mathcal{N}(0, \sigma^2)$$ to model the error $$\varepsilon$$.

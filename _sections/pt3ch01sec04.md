@@ -35,8 +35,8 @@ $$
 $$y$$ is a vector of elements $$y_1$$, $$y_2$$, ..., $$y_n$$. Moreover, in the 
 dataset $$\mathcal{D}$$, picking a sample $$(x_i, y_i)$$ from the population 
 does not affect the chances of any other point ending up in the dataset. In 
-other words, $$y_1$$, $$y_2$$, ..., $$y_n$$ are independent random valiables. 
-Since, each $$y_i \sim \mathcal{N}(\mu, \sigma^2)$$, they are indentically 
+other words, $$y_1$$, $$y_2$$, ..., $$y_n$$ are independent random variables. 
+Since, each $$y_i \sim \mathcal{N}(\mu, \sigma^2)$$, they are identically 
 distributed. Thus,
 
 $$P(y|w, x, \sigma^2) = \prod_{i = 1}^{n} P(y_i|w, x_j, \sigma^2)$$

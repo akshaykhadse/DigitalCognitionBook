@@ -29,7 +29,7 @@ The rank of a matrix would be zero only if the matrix had no elements. If a
 matrix had even one element, its minimum rank would be one.
 
 ## Finding rank of a matrix
-To find rank of a matrix, first convert it to an upper or lower traiangular 
+To find rank of a matrix, first convert it to an upper or lower triangular 
 form using elementary row operations e.g $$r_1 \Leftarrow 2 r_3 + 5 r_6$$. 
 *(More formally, we should convert the matrix to its row echelon form. But for 
 finding rank, any triangular form works just as good)*. You might not get a 
