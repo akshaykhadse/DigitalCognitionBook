@@ -12,7 +12,7 @@ echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 
 echo "# Installing bundler"
-sudo gem install bundler -v '1.17.3'
+sudo gem install bundler -v '2.5.0'
 
 echo "# Installing from Gemfile"
 bundle install
