@@ -48,14 +48,32 @@ Assume that $$p$$ is also a random variable. We will model the prior of $$p$$ as
 
 Observe that this mound shaped curve has peak at $$x = 0.5$$ and looks quite similar to the Gassian distribution. Thus, this distribution incorporates the Suresh's belief that the coin is fair. Thus,
 
-$$g(p) = \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\int_{0}^{1} p^{\alpha-1}(1-p)^{\beta -1} dp}$$
+$$g(p) = \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\mathcal{B}(\alpha,\beta)}$$
 
-Now, since $$f(\theta \mid h) \propto f(h \mid \theta) g(\theta)$$,
+Now, the posterior distribution $$f(p \mid x)$$ is given by
 
 $$
 \begin{align}
-\hat{p}_{\tiny{MAP}} &= \underset{p}{\operatorname{argmax}} f(p \mid x)\\
-&= \underset{p}{\operatorname{argmax}} f(x \mid p) g(p)\\
-&= \underset{p}{\operatorname{argmax}} {}^{n}C_{h} p^h (1-p)^{n-h}  p^{\alpha-1}(1-p)^{\beta-1} \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
+f(p \mid h) &= \frac{f(h \mid p) g(p)}{ \int_{0}^{1} f(h \mid p) g(p) dp} \\
+&= \frac{ {}^{n}C_{h} p^h (1-p)^{n-h} \times \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\mathcal{B}(\alpha,\beta)}}{\displaystyle \int_{0}^{1} {}^{n}C_{h} p^h (1-p)^{n-h} \times \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\mathcal{B}(\alpha,\beta)} dp}\\
+&= \frac{p^h (1-p)^{n-h} \times p^{\alpha-1} (1-p)^{\beta-1}} {\displaystyle \int_{0}^{1} p^h (1-p)^{n-h} \times p^{\alpha-1} (1-p)^{\beta-1} dp}\\
+&= \frac{p^{\alpha + h - 1} (1-p)^{\beta + n - h -1}} {\displaystyle \int_{0}^{1} p^{\alpha + h - 1} (1-p)^{\beta + n - h -1} dp} \\
+&= \frac{p^{\alpha + h - 1} (1-p)^{\beta + n - h -1}} {\mathcal{B}(\alpha + h, \beta + n - h)} \\
+&= \operatorname{Beta}(\alpha + h, \beta + n - h)
 \end{align}
 $$
+
+Now, the Maximum A-Posteriori estimate is,
+
+$$
+\begin{align}
+\hat{p}_{\tiny{MAP}} &= \underset{p}{\operatorname{argmax}} f(p \mid h)\\
+&= \underset{p}{\operatorname{argmax}} \frac{p^{\alpha + h - 1} (1-p)^{\beta + n - h -1}} {\mathcal{B}(\alpha + h, \beta + n - h)}\\
+&= \operatorname{mode}(\operatorname{Beta}(\alpha + h, \beta + n - h))\\
+&= \frac{\alpha + h -1}{\alpha + \beta + n -2}
+\end{align}
+$$
+
+So, for Suresh, the MAP estimate of probability is $$\frac{10+4-1}{10+10+4-2} = 0.6$$
+
+Please notice that the probabilty of getting heads is 0.6 as opposed to 1 which we found out from MLE. MAP estimate is much more reasonable than the MLE and it incorporates our original belif that the coin is fair. This also explains that the tails is not improbable.
