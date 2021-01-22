@@ -48,7 +48,7 @@ Assume that $$p$$ is also a random variable. We will model the prior of $$p$$ as
 
 Observe that this mound shaped curve has peak at $$x = 0.5$$ and looks quite similar to the Gassian distribution. Thus, this distribution incorporates the Suresh's belief that the coin is fair. Thus,
 
-$$g(p) = \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}}$$
+$$g(p) = \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\int_{0}^{1} p^{\alpha-1}(1-p)^{\beta -1} dp}$$
 
 Now, since $$f(\theta \mid h) \propto f(h \mid \theta) g(\theta)$$,
 

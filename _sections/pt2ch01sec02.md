@@ -15,7 +15,7 @@ Here, $$\mathcal{B}(\alpha, \beta)$$ is called the Beta function and it is given
 
 $$
 \begin{align}
-\mathcal{B}(\alpha,\beta) &= \int_{0}^{1} x^{\alpha-1}(1-p)^{\beta -1} dx\\
+\mathcal{B}(\alpha,\beta) &= \int_{0}^{1} x^{\alpha-1}(1-x)^{\beta -1} dx\\
 &= \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}
 \end{align}
 $$
