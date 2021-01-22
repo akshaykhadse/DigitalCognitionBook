@@ -13,6 +13,7 @@ source ~/.bashrc
 
 echo "# Installing bundler"
 sudo gem install bundler
+sudo gem update --system
 
 echo "# Installing from Gemfile"
 bundle install
