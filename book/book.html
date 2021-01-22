@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <body>
+    <h1>Linear Algebra</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt;This part explores Linear Algebra.&lt;/p&gt;
+</code></pre></div></div>
+<h2>Articles</h2>
+
+<h3>Matrix Rank</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;A \(m \times n\) matrix has \(m\) rows, each containing \(n\) elements each.  Same matrix can also be viewed as \(n\) columns containing \(m\) elements each.&lt;/p&gt;
+</code></pre></div></div>
+
+<p>The rank of a matrix is defined as maximum number of linearly independent rows 
+or columns of a matrix.</p>
+
+<p>Here, a row \(r_i\) is said to be linearly independent if it cannot be 
+obtained by a linear combination of any other rows. Linear combination is an 
+operation like \(a_1 r_1 + a_2 + r_2 + ...\) where \(a_j\)’s are scalar 
+constants. In other words, \(r_i\) is linearly independent if</p>
+
+<p>[r_i \neq \sum_{j \neq i}^{} a_j r_j]</p>
+
+<p>for any values of \(a_1\), \(a_2\), …,\(a_{i-1}\), \(a_{i+1}\), …</p>
+
+<p>Same goes for columns as well. A column \(c_i\) is said to be linearly 
+independent if it cannot be obtained by a linear combination of any other 
+columns.</p>
+
+<p>For an \(m \times n\) matrix,</p>
+<ul>
+  <li>If \(m \lt n\), then the maximum rank of the matrix is \(m\).</li>
+  <li>If \(m \gt n\), then the maximum rank of the matrix is \(n\).
+The rank of a matrix would be zero only if the matrix had no elements. If a 
+matrix had even one element, its minimum rank would be one.</li>
+</ul>
+
+<h3 id="finding-rank-of-a-matrix">Finding rank of a matrix</h3>
+<p>To find rank of a matrix, first convert it to an upper or lower traiangular 
+form using elementary row operations e.g \(r_1 \Leftarrow 2 r_3 + 5 r_6\). 
+<em>(More formally, we should convert the matrix to its row echelon form. But for 
+finding rank, any triangular form works just as good)</em>. You might not get a 
+perfect triangle always, thats ok, you should strive to get as many rows 
+containing all zeros as possible. Then, the rank of the matrix is equal to the 
+number of non zero rows in the transformed matrix.</p>
+
+<p>For example,</p>
+
+<p>[\begin{bmatrix}
+0 &amp; 1 &amp; 2<br />
+1 &amp; 2 &amp; 1<br />
+2 &amp; 7 &amp; 8
+\end{bmatrix}
+\Longrightarrow
+\begin{bmatrix}
+1 &amp; 2 &amp; 1<br />
+0 &amp; 1 &amp; 2<br />
+0 &amp; 0 &amp; 0
+\end{bmatrix}]</p>
+
+<p>Hence, rank of this matrix is 2.</p>
+
+<p>We could also use elementary column operations to transform columns instead of 
+rows. The rank will remain the same.</p>
+
+<h3 id="full-rank-matrices">Full rank matrices</h3>
+<p>A matrix is called full rank matrix if all the vectors in a matrix are 
+linearly independent. For example,</p>
+
+<p>[A = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 2<br />
+2 &amp; 1 &amp; 0<br />
+3 &amp; 2 &amp; 1
+\end{bmatrix}]</p>
+
+<p>\(A\) is a full rank matrix.</p>
+
+<p>Following are some interesting conclusions that can be drawn by looking at the 
+rank of a matrix:</p>
+<ul>
+  <li>The determinant of a square matrix is zero if it is not full column rank.</li>
+  <li>A square matrix is invertible only if it has full rank. Because, otherwise 
+the determinant will be zero.</li>
+</ul>
+
+<p>We can have full column rank or full row rank matrices for non-square matrices 
+i.e. when \(m \neq n\).</p>
+
+<p>A matrix is called full column rank matrix if all the column vectors in a 
+matrix are linearly independent i.e. rank of matrix is equal to the number of 
+columns. For example,</p>
+
+<p>[B = 
+\begin{bmatrix}
+1 &amp; 0<br />
+2 &amp; 1<br />
+3 &amp; 2
+\end{bmatrix}]</p>
+
+<p>\(B\) is full column rank matrix because \(Rank(B) = 2 = number \; of \; 
+columns \; of \; B\)</p>
+
+<p>A matrix is called full row rank matrix if all the row vectors in a matrix are 
+linearly independent i.e. rank of matrix is equal to the number of rows. For 
+example,</p>
+
+<p>[C = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 2<br />
+9 &amp; 6 &amp; 3
+\end{bmatrix}]</p>
+
+<p>\(C\) is full column rank matrix because \(Rank(C) = 2 = number \; of \; rows 
+\; of \; C\)</p>
+
+<h3 id="column-space">Column space</h3>
+<p>Column space of a matrix is the set of all possible vectors that can be 
+obtained by linear combination of columns of the matrix. Column space 
+\(\mathcal(C)\) of a \(m \times n\) matrix \(\phi = [ \phi_1 \; \phi_2 \; ... 
+\;\phi_n ]\) where \(\phi_i\)]s are the columns of \(\phi\) is given as</p>
+
+<p>[\mathcal{C}(\phi) = { x \mid x = w^\intercal \phi \; \forall \; w \in 
+\mathbb{R}^m}]</p>
+
+<p>Geometrically, column space is the plane containing \(\phi_1\), \(\phi_2\), 
+…, \(\phi_n\).</p>
+
+<h3 id="lemma">Lemma</h3>
+<p>A matrix \(\phi^\intercal \phi\) is invertible if and only if \(\phi\) is full column 
+rank.</p>
+
+<p><strong>Proof:</strong></p>
+
+<p><em>Part 1:</em></p>
+
+<p>Lets assume that \(\phi\) is not full column rank.</p>
+
+<p>Then, it means that there exists a vector \(x\) such that \(x \neq \bar{0}\) 
+and</p>
+
+<p>[\phi x = \bar{0}]</p>
+
+<p>Pre-multiplying both sides by \(\phi^\intercal\),</p>
+
+<p>[\phi^\intercal \phi x = \bar{0}]</p>
+
+<p>Thus, the matrix \(\phi^\intercal \phi\) is not full rank and hence not invertible.</p>
+
+<p><em>Part 2:</em></p>
+
+<p>Lets assume that \(\phi\) is full column rank and \(\phi^\intercal \phi\) is non 
+invertible.</p>
+
+<p>Then, it means that there exists a vector \(x\) such that \(x \neq \bar{0}\) 
+and</p>
+
+<p>[\phi^\intercal \phi x = \bar{0}]</p>
+
+<p>Pre-multiplying both sides by \(x^\intercal\),</p>
+
+<p>[x^\intercal \phi^\intercal \phi x = 0<br />
+(\phi x)^\intercal \phi x = 0<br />
+\phi x = \bar{0}]</p>
+
+<p>Thus, the matrix \(\phi\) is not full column rank. Our assumption is 
+incorrect. \(\phi^\intercal \phi\) must be invertible.</p>
+<h1>Statistics</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt;This part explores satistics and probability.&lt;/p&gt;
+</code></pre></div></div>
+<h2>Articles</h2>
+
+<h3>Beta Distribution</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;The beta distribution is a family of continuous probability distributions defined on the interval \([0, 1]\) parameterized by two positive shape parameters, denoted by \(\alpha\) and \(\beta\), that control the shape of the distribution.&lt;/p&gt;
+</code></pre></div></div>
+
+<p>This is denoted as \(X \sim \operatorname{Beta}(\alpha, \beta)\).</p>
+
+<p>The probability density function of Beta distribution is given by</p>
+
+<p>[f(x \mid \alpha, \beta) = \frac{x^{\alpha-1}(1-x)^{\beta-1}}{\mathcal{B}(\alpha, \beta)}]</p>
+
+<p>Here, \(\mathcal{B}(\alpha, \beta)\) is called the Beta function and it is given by</p>
+
+<p>[\begin{align}
+\mathcal{B}(\alpha,\beta) &amp;= \int_{0}^{1} x^{\alpha-1}(1-x)^{\beta -1} dx<br />
+&amp;= \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}
+\end{align}]</p>
+
+<p>where, \(\Gamma(n) = (n-1)!\) for all \(n \in \mathbb{Z}^{+}\).</p>
+
+<p>Let’s see the effect of \(\beta\) on the PDF
+<img src="/DigitalCognitionBook/assets/images/beta_dustribution_beta.gif" alt="Beta Distribution" width="80%" height="80%" /></p>
+
+<p>The effect of \(\alpha\) and \(\beta\) on the PDF is summarized in the following image
+<img src="/DigitalCognitionBook/assets/images/beta_distribution.svg" alt="Beta Distribution" width="80%" height="80%" /></p>
+<h3>Maximum Likelihood Estimate</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;Suresh tosses a coin 1000 times and he observes heads 400 times.&lt;/p&gt;
+</code></pre></div></div>
+
+<p>This is a stochastic process that takes discrete values viz. heads (1) or tails 
+(0). In such cases, we can calculate the probability of observing a particular 
+set of outcomes by making suitable assumptions about the underlying stochastic 
+process. For example, in our case, probability of coin landing heads is \(p\) 
+and that coin tosses are independent.</p>
+
+<p>Let’s denote the observed outcomes by \(O\) and the set of parameters that 
+describe the stochastic process as \(\theta\). Our observed outcome is 400 
+heads and 600 tails. The process of tossing a coin is governed only by the 
+probability \(p\). Hence, \(\theta = p\). Thus, when we speak of probability 
+we want to calculate \(P(O \mid \theta)\). In other words, given specific 
+values for \(\theta\), \(P(O \mid \theta)\) is the probability that we would 
+observe the outcomes represented by \(O\).</p>
+
+<p>However, when we model a real life stochastic process, we often do not know 
+\(\theta\). We simply observe \(O\) and the goal then is to arrive at an 
+estimate for \(\theta\) that would be a plausible choice given the observed 
+outcomes \(O\). We know that given a value of \(\theta\) the probability of 
+observing \(O\) is \(P(O \mid \theta)\). Thus, a ‘natural’ estimation process 
+is to choose that value of \(\theta\) that would maximize the probability that 
+we would actually observe \(O\). In other words, we find the parameter values 
+\(\theta\) that maximize the following function:</p>
+
+<p>[L(\theta \mid O) = P(O \mid \theta)]</p>
+
+<p>\(L(\theta \mid O)\) is called the likelihood function. Notice that by 
+definition the likelihood function is conditioned on the observed \(O\) and 
+that it is a function of the unknown parameters \(\theta\).</p>
+
+<p>Suresh is about to toss the coin again and he would like to know the 
+probability of getting a heads in this toss. We can estimate the probability 
+of observing heads as</p>
+
+<p>[P(Heads) = \frac{400}{1000} = 0.4 = \hat{\theta}_{\tiny{MLE}}]</p>
+
+<p>However, it is important to note that we do not know the exact probability of 
+getting the heads \(\theta\). \(\hat{\theta}_{\tiny{MLE}}\) is an estimate 
+that maximises the likelihood of observing the outcomes that we already saw. 
+In other words, it the value of the parameter which is the most reasonable 
+explantion for our observations.</p>
+
+<p>It’s all good for argument sake, but can we prove this theoritically?</p>
+
+<p>We know that tossing a coin 1000 times is a Bernouli trial and the number of 
+heads (denoted by random variable \(X\)) follows a Binomial distribution. 
+Let’s assume that \(\theta\) is the probablity of getting a head in any single 
+coin toss. Thus, probability of getting a tails in single toss will be 
+\((1-\theta)\). Hence, the probability of getting \(k\) heads in \(n\) coin 
+tosses is given by</p>
+
+<p>[P(X = k \mid \theta) = {}^{n}C_{k} \; \theta^{k}(1-\theta)^{n-k}]</p>
+
+<p>where</p>
+
+<p>Now, we can formulate our maximum likelihood estimate as</p>
+
+<p>[\begin{align}
+\hat{\theta}<em>{\tiny{MLE}} &amp;= \underset{\theta}{\operatorname{argmax}} L(\theta \mid X = k)<br />
+&amp;=  \underset{\theta}{\operatorname{argmax}} P(X = k \mid \theta)<br />
+&amp;=  \underset{\theta \in [0,1]}{\operatorname{argmax}} {}^{n}C</em>{k} \; \theta^{k}(1-\theta)^{n-k}
+\end{align}]</p>
+
+<p>Instead of maximizing the likelihood, we will maximise the log of likelihood. 
+Since log is a monotonically increasing function, it preserves the location of 
+maximas and minimas of the original function</p>
+
+<p>[\begin{align}
+LL(\theta \mid X = k) &amp;= \log (L(\theta \mid X = k))<br />
+&amp;= \log ({}^{n}C_{k} \; \theta^{k}(1-\theta)^{n-k})<br />
+&amp;= \log ({}^{n}C_{k}) + k \log(\theta) + (n-k) \log(1-\theta)
+\end{align}]</p>
+
+<p>Therefore,</p>
+
+<p>[\begin{align}
+\hat{\theta}<em>{\tiny{MLE}} &amp;= \underset{\theta}{\operatorname{argmax}} L(\theta \mid X = k)<br />
+&amp;=  \underset{\theta}{\operatorname{argmax}} LL(\theta \mid X = k)<br />
+&amp;=  \underset{\theta \in [0,1]}{\operatorname{argmax}} \log ({}^{n}C</em>{k}) + k \log(\theta) + (n-k) \log(1-\theta)
+\end{align}]</p>
+
+<p>Differentiating with respect to \(\theta\),</p>
+
+<p>[\begin{align}
+\frac{d}{d \theta} LL(\theta \mid X = k) &amp;= \frac{d}{d \theta} \log ({}^{n}C_{k}) + k \frac{d}{d \theta} \log(\theta) + (n-k) \frac{d}{d \theta} \log(1-\theta)<br />
+&amp;= \frac{k}{\theta} - \frac{n-k}{1-\theta}
+\end{align}]</p>
+
+<p>For \(\theta\) to be maximum,</p>
+
+<p>[\frac{d}{d \theta} LL(\theta \mid X = k) = 0<br />
+\frac{k}{\theta} - \frac{n-k}{1-\theta} = 0<br />
+\frac{k}{\theta} = \frac{n-k}{1-\theta}<br />
+\theta = \frac{k}{n}]</p>
+
+<p>Thus, the maximum likelihood estimator for \(\theta\) is</p>
+
+<p>[\hat{\theta}_{\tiny{MLE}} = \frac{k}{n}]</p>
+
+<p>This is the same estimate which we calculated initially i.e. \(\hat{\theta}_{\tiny{MLE}} = \frac{400}{1000} = 0.4\)</p>
+
+<h3 id="continuous-random-variables">Continuous Random Variables</h3>
+
+<p>If the stochatistc process has a continous random variable as its outcome, 
+then the situation is similar, with one important difference. We can no longer 
+talk about the probability that we observed \(O\) given \(\theta\) because in 
+the continuous case \(P(O \mid \theta)=0\). Without getting into 
+technicalities, the basic idea is as follows:</p>
+
+<p>Denote the probability density function (pdf) associated with the outcomes 
+\(O\) as: \(f(O \mid \theta)\). Thus, in the continuous case we estimate 
+\(\theta\) given observed outcomes \(O\) by maximizing the following function:</p>
+
+<p>[L(\theta \mid O)=f(O \mid \theta)]</p>
+
+<p>Our use of the pdf instead of actual probability intutuively makes sense 
+because if we compare probabilities of getting a small set of outcome e.g. 
+\(P(300 \leq O \leq 301 \mid \theta)\) instead of a particular outcome e.g. 
+\(P(O = 300 \mid \theta)\), then we can see that the probabilities are 
+actually proportional to the value of pdf 
+\(f((O_{max} + O_{min})/2 \mid \theta)\).</p>
+
+<p>In this situation, we cannot technically assert that we are finding the 
+parameter value that maximizes the probability that we observe \(O\) as we 
+maximize the PDF associated with the observed outcomes \(O\).</p>
+
+<h3 id="derivation-of-mle">Derivation of MLE</h3>
+<p>Suppose we observe \(n\) samples. Let each sample be denoted by random 
+variables \(X_i\), \(X_2\), …, \(X_n\). Its safe to assume that \(X_i\)’s 
+are independent of each other i.e drawing a sample from the population does 
+not affect the chances of getting any other sample. Each random variable is 
+governed by a distribution which follows the probability mass function (in 
+discrete random variables) or probability density function (in case of 
+continous random variabes) \(f_{\theta}(x_i) = f(x_i \mid \theta)\). This 
+means that the distribution is governed by a parameter \(\theta\). Such 
+random variables are said to be independent and identically distributed 
+(i.i.d).</p>
+
+<p>Now, if we observe that \(X_i = x_i\), \(X_2 = x_2\), …, \(X_n = x_n\). 
+Then, the probability of making this observation is given by a function 
+\(f_{\theta}(x_1, x_2, ..., x_n)\). This is known as joint probability mass 
+function (for discrete random variables) and probability mass function (for 
+continous random variables). It is given as</p>
+
+<p>[\begin{align}
+f_{\theta}(x_1, x_2, …, x_n) &amp;= f(x_1, x_2, …, x_n \mid \theta)<br />
+&amp;= \prod^{i=1}{n} f_{theta}(x_i)<br />
+\end{align}]</p>
+
+<p>The likelihood function of \(\theta\) is given by</p>
+
+<p>[\begin{align}
+L(\theta \mid \mathcal{D}) &amp;= L(\theta \mid x_1, x_2, …, x_n)<br />
+&amp;= f_{\theta}(x_1, x_2, …, x_n)<br />
+&amp;= f(x_1, x_2, …, x_n \mid \theta)<br />
+&amp;= \prod^{i=1}{n} f_{theta}(x_i)
+\end{align}]</p>
+
+<p>Thus the maximum likihood extimator of \(\theta\) is given by</p>
+
+<p>[\begin{align}
+\hat{\theta}<em>{\tiny{MLE}} &amp;= \underset{\theta}{\operatorname{argmax}} L(\theta \mid \mathcal{D})<br />
+&amp;= \underset{\theta}{\operatorname{argmax}} \prod^{i=1}{n} f</em>{theta}(x_i)
+\end{align}]</p>
+<h3>Entropy</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;The entropy of a random variable is measure of its uncertainity. Some texts  also refer it as a measure of information content.&lt;/p&gt;
+</code></pre></div></div>
+
+<p>But, what is the meaning of uncertainity or information content? Let’s 
+understand with an example
+<img src="/DigitalCognitionBook/assets/images/entropy_example.svg" alt="Entropy example" width="80%" height="80%" />
+We have two random alphabet generator machines which generate one character 
+from the set \(\{A, B, C, D\}\). The probabilities of generating each alphabet 
+is, however, different for both machines. For machine 1, each alphabet is 
+equaly likely to be generated i.e. \(P(A) = P(B) = P(C) = P(D) = \frac{1}{4}\). 
+However, for machine 2, probabilities of getting each alphabet is 
+\(P(A) = \frac{1}{2}\), \(P(B) = \frac{1}{4}\), \(P(C) = \frac{1}{8}\) and 
+\(P(D) = \frac{1}{8}\).</p>
+
+<p>But, you cannot directly generate a alphabet from these machines. As it turns 
+out, these machines have overly complicated controls for a seemingly simple 
+task. Hence, there is a machine operator who can get the machine to generate a 
+alphabet for you. Machine operator generates an alphabet from the machine but 
+insists that you guess the alphabet correctly by asking some questions only 
+then would he give the alphabet to you. Given the absurd situation you have 
+found yourselves in, you would like to get over with it by asking minimum 
+number of questions to the operator.</p>
+
+<p>Consider the case where you ask operator to generate an aplhabet from machine 
+1.
+<img src="/DigitalCognitionBook/assets/images/entropy_machine1.svg" alt="Questions machine 1" width="50%" height="50%" />
+You ask the first question to operator, “Is the alphabet A or B?”. The 
+operator says yes. Then you ask, “Is the alphabet A?”. The operator respond 
+no. Hence, you tell the operator that the machine generated the alphabet B. 
+The operator then hands it over to you.</p>
+
+<p>Please note that to guess the alphabet correctly, you had to ask two 
+questions. From the decision tree in the above image, you can see that even if 
+the operator responded differently for any of the questions, you would still 
+need to ask two questions. Thus, if you repeat this experiment for 100 times, 
+you would need to ask 200 questions i.e. on an average 2 questions per trial.</p>
+
+<p>Let’s see what happens for machine 2. Since, probability of getting A is 
+highest, you should start asking questions from A and then move to alphabets 
+with lower probability of occurrence. This will ensure that if you repeat the 
+trial sevel times, you will be asking minimum number of question.
+<img src="/DigitalCognitionBook/assets/images/entropy_machine2.svg" alt="Questions machine 2" width="50%" height="50%" />
+You ask the operator to get a new alphabet from the machine and start with a 
+question “Is the alphabet A?”. The operator responds with a no. Then, you ask, 
+“Is the alphabet B?”. The operator says yes. The operator hands the alphabet 
+over to you as you guessed it correctly.</p>
+
+<p>Note that you had to ask two questions to correctly guess the alphabet B. 
+However, you can see that in the decision tree, you would need to ask just one 
+question if the alphabet generated by the machine 2 was A. Similarly, you 
+would need to ask three questions to correctly guess C or D.</p>
+
+<p>If you repeat this experiment 800 times, you can expect to see 400 A’s, 200 
+B’s, 100 C’s and 100 D’s. Thus the average number of questions that you would 
+need to ask is 
+\(\frac{400 \cdot 1 + 200 \cdot 2 + 100 \cdot 3 + 100 \cdot 3}{800} = 1.75\).</p>
+
+<p>The more uncertain the outcome of an experiment is, more number of questions 
+you would ask to guess the outcome correctly. Thus the average number of 
+questions you ask is the measure of uncertainity. This can also be termed as 
+information content. If the probability of occurence of an event is \(p\) then 
+you would more or less (not exactly always) be asking \(-\log_{2}(p)\) 
+questions. So, the average number of questions that you would be asking is 
+entropy.</p>
+
+<p>Given a discrete random variable \(X\), with possible outcomes \(x_1\), …, 
+\(x_n\), which occur with probability \(P(x_1)\), …, \(P(x_n)\), the entropy 
+of \(X\) is formally defined as:</p>
+
+<p>[H(X) = - \sum_{i=1}^{n} P(x_i) \log_{2}(P(x_i))]</p>
+
+<p>Of all the distributions with variance \(\sigma^2\), Gaussian distribution has 
+the highest entropy. It models the highest uncertainity. Hence, it usually 
+chosen to model unknown random variables as it encapsulates the worst case 
+scenario of maximum uncertainity. This is the reason we chose 
+\(\mathcal{N}(0, \sigma^2)\) to model the error \(\varepsilon\).</p>
+<h3>Maximum A-Posteriori Estimate</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;Consider the exmaple of coin toss which we saw earlier. Let’s say Suresh gets himself a new coin from the mint. The coin has one face heads and other tails. Since coin is brand new, he believes that the coin is fair. So, getting heads and tails is equally likely i.e. \(P(H) = P(T) = 0.5\).&lt;/p&gt;
+</code></pre></div></div>
+
+<p>Now, Suresh tosses the coins four times and he obeserves heads all four times. What is the porbability of getting heads in the next toss? Well, if we were looking at the maximum likelihood estimate, then the answer would be \(\hat{P}(H) = 4/4 = 1\).</p>
+
+<p>Does this mean that tails is improbable? We know that it would be practically possible to get heads all the time only if both the faces of the coin were heads (and we were in the movie Sholay). This is clearly not true for our coin, it has heads on one face and tails on the other. This means that Suresh’s belif that the coin is fair is not correct. However, it does not mean that the tails is improbabe. So, is there a way through which Suresh can update his belif that \(\hat{p} = 0.5\) by incorpating the information he recieved by tossing coin four times?</p>
+
+<p>Yes. Let me introduce you to Bayesian Inference. Let’s say that the \(X\) is governed by a distribution whose parameter is \(\theta\). Under the Bayesian Inference, you assume that \(\theta\) in itself is another random variable. The you can incorporate your belif about \(\theta\) via assuming a probability distribution that governs \(\theta\). We will represent this distribution via a PDF or PMF \(g(\theta)\). The probability distribution of \(\theta\) which incorporates your belif \(g(\theta)\) is called prior because this denotes your belif about \(\theta\) prior to observing evidence or data \(\mathcal{D}\).</p>
+
+<p>As we saw with Suresh’s coin toss example, we may encounter some evidence or data \(\mathcal{D}\) which can be used to update our original belif. This evidence can be encorporated in a distribution denoted by \(f(x \mid \theta)\). No fancy names for this one.</p>
+
+<p>Then we can conclude the following from the Bayes’ rule</p>
+
+<p>[f(\theta \mid x) = \frac{f(x \mid \theta) g(\theta)}{\int_{\Theta} f(x \mid t) g(t) dt}]</p>
+
+<p>where \(\Theta\) is the domain of function \(g(\theta)\). The set of values over which a function is defined is called domain of that function. In other words, \(\Theta\) deontes range of \(\theta\) over which function \(g(\theta)\) is defined.</p>
+
+<p>In this equation, the denominator does not depend on the \(\theta\). Therefore, it is constant. We can see that maximizing \(f(\theta \mid x)\) is same as maximizing \(f(x \mid \theta) g(\theta)\). Thus we can write</p>
+
+<p>[f(\theta \mid x) \propto f(x \mid \theta) g(\theta)]</p>
+
+<p>In this equation \(f(\theta \mid x)\) is known as posterior distribution of \(\theta\).</p>
+
+<p>The maximum a-posteriori estimate is the value of \(\theta\) which maximises the posterior distribution of \(\theta\). This is given as</p>
+
+<p>[\begin{align}
+\hat{\theta}_{MAP} &amp;= \underset{\theta}{\operatorname{argmax}} f(\theta \mid x)<br />
+&amp;= \underset{\theta}{\operatorname{argmax}} f(x \mid \theta) g(\theta)
+\end{align}]</p>
+
+<p>Observe that the MAP estimate of \(\theta\)  coincides with the ML estimate when the prior \(g\) is uniform (that is, a constant function).</p>
+
+<p>Let’s get back to Suresh. Coin toss is an example of Binomial distribution. Let probability of getting heads in a single coin toss be \(p\). The probablity of observing \(h\) heads in \(n\) tosses is given by</p>
+
+<p>[f(h \mid p) = {}^{n}C_{h} p^h (1-p)^{n-h}]</p>
+
+<p>Assume that \(p\) is also a random variable. We will model the prior of \(p\) as a Beta distribution (beacuse Beta is the conjugate prior of Binomial. This will be discussed later when explaining conjugate priors) with parameter \(\alpha = 10\) and \(\beta = 10\). This is shown in the following figure</p>
+
+<p><img src="/DigitalCognitionBook/assets/images/beta_distribution_10_10.png" alt="" width="80%" height="80%" /></p>
+
+<p>Observe that this mound shaped curve has peak at \(x = 0.5\) and looks quite similar to the Gassian distribution. Thus, this distribution incorporates the Suresh’s belief that the coin is fair. Thus,</p>
+
+<p>[g(p) = \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\mathcal{B}(\alpha,\beta)}]</p>
+
+<p>Now, the posterior distribution \(f(p \mid x)\) is given by</p>
+
+<p>[\begin{align}
+f(p \mid h) &amp;= \frac{f(h \mid p) g(p)}{ \int_{0}^{1} f(h \mid p) g(p) dp} <br />
+&amp;= \frac{ {}^{n}C_{h} p^h (1-p)^{n-h} \times \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\mathcal{B}(\alpha,\beta)}}{\displaystyle \int_{0}^{1} {}^{n}C_{h} p^h (1-p)^{n-h} \times \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\mathcal{B}(\alpha,\beta)} dp}<br />
+&amp;= \frac{p^h (1-p)^{n-h} \times p^{\alpha-1} (1-p)^{\beta-1}} {\displaystyle \int_{0}^{1} p^h (1-p)^{n-h} \times p^{\alpha-1} (1-p)^{\beta-1} dp}<br />
+&amp;= \frac{p^{\alpha + h - 1} (1-p)^{\beta + n - h -1}} {\displaystyle \int_{0}^{1} p^{\alpha + h - 1} (1-p)^{\beta + n - h -1} dp} <br />
+&amp;= \frac{p^{\alpha + h - 1} (1-p)^{\beta + n - h -1}} {\mathcal{B}(\alpha + h, \beta + n - h)} <br />
+&amp;= \operatorname{Beta}(\alpha + h, \beta + n - h)
+\end{align}]</p>
+
+<p>Now, the Maximum A-Posteriori estimate is,</p>
+
+<p>[\begin{align}
+\hat{p}_{\tiny{MAP}} &amp;= \underset{p}{\operatorname{argmax}} f(p \mid h)<br />
+&amp;= \underset{p}{\operatorname{argmax}} \frac{p^{\alpha + h - 1} (1-p)^{\beta + n - h -1}} {\mathcal{B}(\alpha + h, \beta + n - h)}<br />
+&amp;= \operatorname{mode}(\operatorname{Beta}(\alpha + h, \beta + n - h))<br />
+&amp;= \frac{\alpha + h -1}{\alpha + \beta + n -2}
+\end{align}]</p>
+
+<p>So, for Suresh, the MAP estimate of probability is \(\frac{10+4-1}{10+10+4-2} = 0.6\)</p>
+
+<p>Please notice that the probabilty of getting heads is 0.6 as opposed to 1 which we found out from MLE. MAP estimate is much more reasonable than the MLE and it incorporates our original belif that the coin is fair. This also explains that the tails is not improbable.</p>
+<h1>Machine Learning</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt;This part explores the foundations of Machine Learning.&lt;/p&gt;
+</code></pre></div></div>
+<h2>Linear Regression</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        &lt;p&gt;Linear regression is concerned with modelling the relationship between  dependent variable and independent variable.&lt;/p&gt;
+</code></pre></div></div>
+
+<p>Suppose a company would like to know how much it should spend on the 
+commercials to achieve a certain amount of sales. It has the data regarding 
+their previous investments for commercials and the resultant sales figures. To 
+get a somewhat accurate estimate, the analysts in the company would like to 
+understand the reationship between the sales and the investments into the TV 
+commercials.</p>
+
+<p>Let’s establish the following notation:</p>
+<ul>
+  <li>The amount invested into the TV commercials is denoted by \(x\) because it 
+is the independent variable here.</li>
+  <li>The sales figure during this period is denoted by \(y\) because it is the 
+dependent variable.</li>
+  <li>The company has data in form of n pairs like \((x_i, y_i)\) where \(i\) is 
+the index.</li>
+</ul>
+
+<p>Let’s visualize the data via a scatter plot
+<img src="/DigitalCognitionBook/assets/images/linear-regression1.png" alt="Scatter Plot: Sales vs TV" />
+We can clearly see a linear trend in this plot. If spending on TV commercials 
+increases the sales figures seem to increase.</p>
+
+<p>We describe a general linear relationship between \(x\) and \(y\) via the 
+following equation:</p>
+
+<p>[y = \beta_0 + \beta_1 x]</p>
+
+<p>If we fit the this curve to the data, we get the following line:</p>
+
+<p>[y = 6.9748 + 0.0554x]</p>
+
+<p>Let’s plot this line on our data
+<img src="/DigitalCognitionBook/assets/images/linear-regression2.png" alt="Linear Regression Fit" />
+We can see that the line passes more or less through the middle of the data 
+points.</p>
+
+<p>You can refer the <a href="https://github.com/akshaykhadse/DigitalCognitionBook/blob/code/01_linear_regression/01_linear_regression.ipynb">linear regression notebook</a> for complete example.</p>
+
+<p>In this example, we had just one value as input i.e. the \(x\) was scalar. 
+However, there might be seveal factors which influence the sales figures like</p>
+<ul>
+  <li>Time of investment</li>
+  <li>Time of commercial</li>
+  <li>Expenditure on radio commercials</li>
+  <li>Expenditure on newspaper commercials</li>
+</ul>
+
+<p>In this case, the \(x\) is not a scalar, but a collection of the above 
+attributes. The following section will formalize the linear regression problem 
+for such cases.</p>
+<h3>Simple Linear Regression</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;Suppose we have a dataset \(\mathcal{D}\) which contains examples  \((x_1, y_1)\), \((x_2, y_2)\), \((x_3, y_3)\), … \((x_n, y_n)\) where \(m\)  is the total number of examples.&lt;/p&gt;
+</code></pre></div></div>
+
+<p>Each \(x\) is an input (also known as independent variable). And each \(y\) is 
+output (also known as dependent or target variable).</p>
+
+<p>\((x, y)\) represents a single example. \((x_i, y_i)\) is the \(j^{th}\) 
+example where \(j\) is index to the dataset.</p>
+
+<p>Each \(x_i\) has \(p\) attributes \(\phi_1(x_i)\), \(\phi_2(x_i)\), …, 
+\(\phi_p(x_i)\). \(\phi_i\)’s should be considered as a functions which when 
+applied to any point \(x_j\), gives the value of attribute \(\phi_i(x_j)\). 
+For example, we may encounter a sample \((1.12, 14)\) where \(x_i = 10\). If 
+an attribute is defined as \(\phi_j(x_i) = sin(x_i)\), then 
+$$\phi_j(1.12) = sin(1.12).</p>
+
+<p>We define a new \(n \times (p+1)\) matrix \(\phi(x)\) or simply \(\phi\) as</p>
+
+<p>[\phi = 
+\begin{bmatrix}
+1 &amp; \phi_1(x_1) &amp; \phi_2(x_1) &amp; … &amp; \phi_p(x_1)<br />
+1 &amp; \phi_1(x_2) &amp; \phi_2(x_2) &amp; … &amp; \phi_p(x_2)<br />
+.<br />
+.<br />
+.<br />
+1 &amp; \phi_1(x_n) &amp; \phi_2(x_n) &amp; … &amp; \phi_p(x_n)<br />
+\end{bmatrix}]</p>
+
+<p>\(i^{th}\) row of this matrix is represented as \(\phi(x_i)\). Similarly, 
+\(i^{th}\) column of this matrix can be represented as \(\phi_i(x)\). This is 
+also known as \(i^{th}\) feature of the datset \(\mathcal{D}\).</p>
+
+<p>Let’s also define a \(n \times 1\) matrix \(y\) as</p>
+
+<p>[y = 
+\begin{bmatrix}
+y_1 <br />
+y_2 <br />
+. <br />
+. <br />
+. <br />
+y_n
+\end{bmatrix}]</p>
+
+<p>The general equation of linear regression model is</p>
+
+<p>[y_i = w_0 + w_1 \phi_1(x_i) + w_2 \phi_2(x_i) + … + w_p \phi_p(x_i)]</p>
+
+<p>where \(w_0\) is the bias and \(w_1\), \(w_2\), …, \(w_p\) are weights. We 
+can denote this by a vector \(w\) as</p>
+
+<p>[w = 
+\begin{bmatrix}
+w_0 <br />
+w_1 <br />
+w_2 <br />
+. <br />
+. <br />
+. <br />
+w_p
+\end{bmatrix}]</p>
+
+<p>Then the above equation in the matrix form can be written as</p>
+
+<p>[y_i = w_1 ^ T \phi(x_i)]</p>
+
+<p>where</p>
+
+<p>[\phi(x_i) =
+\begin{bmatrix}
+1 <br />
+\phi_1(x_i) <br />
+\phi_2(x_i) <br />
+. <br />
+. <br />
+. <br />
+\phi_p(x_i)
+\end{bmatrix}]</p>
+
+<p>The same equation can be written for all values of \(y\) as</p>
+
+<p>[y = \phi(x) w]</p>
+
+<p>The \(y\) is linear combination of columns of matrix \(\phi\) because 
+\(i^{th}\) column of \(\phi\) is multiplied by \(w_i\). But this does not mean 
+that linear regression is naievely linear. We can inject nonlinearities via 
+the features/basis functions \(\phi_i\)s. For example, we could have used a 
+function \(\phi(x_i) = x_i^2\) in the TV commercial example. To summarize, 
+\(y\) is linear in \(\phi\) and \(w\) but it may or may not be linear with 
+respect to \(x\).</p>
+
+<h3 id="regression-problem">Regression Problem</h3>
+<p>Now we define the regression problem as:</p>
+
+<p>Determine a function \(\hat{f}\) such that \(\hat{f}(x)\) is the best predictor 
+(minimizes the error \(E(f, \mathcal{D})\)) of \(y\) with respect to the data 
+\(\mathcal{D}\).</p>
+
+<p>[\hat{f} = \underset{f \in \mathcal{F}}{\operatorname{argmin}} E(f, \mathcal{D})]</p>
+
+<p>Here, \(f\) is a function which belongs to a class of functions 
+\(\mathcal{F}\). For linear regression, \(\mathcal{F}\) is class of linear 
+functions i.e. \(f\) is a linear function.</p>
+
+<p>When we say best predictor, we must have a measure which we use to determine 
+goodness of a function. The error function \(E\) is a measure of deviation of 
+predicted value \(\hat{y}\) from the observed value \(y\). Smaller the error, 
+better the predictior function \(f\). The error \(E\) is a function of \(f\) 
+and data \(\mathcal{D}\). A common error function is Sum of Squared Error. 
+There are different types of linear regression based on what error function is 
+minimized and what classes of fuctions are considered.</p>
+
+<h3 id="linear-regression-problem">Linear Regression Problem</h3>
+<p>If we consider the class of linear functions for \(f\), then 
+\(f(\phi(x), w) = \phi(x)w\). We can rewrite the above problem as:</p>
+
+<p>Determine parameters \(w\) for the function \(f(\phi(x), w)\) which minimises 
+the error function \(E(f(\phi(x), w), \mathcal{D})\).</p>
+
+<p>[\hat{w} = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})]</p>
+
+<h3 id="sum-of-squared-error-sse">Sum of Squared Error (SSE)</h3>
+<p>The sum of squares error is defined as follows:</p>
+
+<p>[E(f, \mathcal{D}) = \sum_{\mathcal{D}}^{} (y_i - f(x_i))^2]</p>
+
+<p>It measures the square of deviation of each example \((x_i, y_i)\) from the 
+prediction \(\hat{y_i} = w^\intercal \phi(x_i)\). Thus, it is a function of \(f\) and 
+data \(\mathcal{D}\). This also known as Residual Sum of Squares (RSS).</p>
+
+<p>This error is used to find a least square solution to linear regression 
+problem.</p>
+<h3>Least Squares Solution</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;&lt;em&gt;The following discussion relies on matrix calculus. If you are not comfortable  with matrix calculus, you may want to take a look at  &lt;a href="https://atmos.washington.edu/~dennis/MatrixCalculus.pdf"&gt;this article&lt;/a&gt; on the  subject.&lt;/em&gt;&lt;/p&gt;
+</code></pre></div></div>
+
+<p>We can write the sum of squares error in matrix form as</p>
+
+<p>[E(f(\phi(x), w), \mathcal{D}) = (y - \phi w)^\intercal(y - \phi w)]</p>
+
+<p>You might have noticed that we used \(\phi\) instead of \(\phi(x)\). We will 
+abuse the notations to make the further mathematical treatment simple to 
+understand.</p>
+
+<p>Then we can find the parameters \(\hat{w}\)</p>
+
+<p>[\hat{w} = \underset{w}{(y - \phi w)^\intercal(y - \phi w)}]</p>
+
+<p>Differentiating \(E\) with respect to \(w\),</p>
+
+<p>[\frac{\partial{E}}{\partial{w}} = -2 \phi^\intercal (y - \phi w)]</p>
+
+<p>[\frac{\partial^2 E}{\partial{w}\partial{w^\intercal}} = \phi^\intercal \phi]</p>
+
+<p>If \(\phi\) has full column rank, \(\phi^\intercal \phi\) is positive definite, we set 
+the first derivative to zero</p>
+
+<p>[\phi^\intercal (y - \phi w) = 0]</p>
+
+<p>To obtain the solution</p>
+
+<p>[\hat{w} = (\phi^\intercal \phi)^{-1} \phi^\intercal y]</p>
+<h3>Geometric Interpretation of Least Squares Solution</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;&lt;img src="/DigitalCognitionBook/assets/images/geometric_interpretation.svg" alt="Geometric interpretation of least squares solution" width="80%" height="80%" /&gt;&lt;/p&gt;
+</code></pre></div></div>
+
+<p>In the above figure, the \(\phi_1(x)\), \(\phi_2(x)\), …, \(\phi_p(x)\) are 
+the vectors corresponding to each column of \(\phi(x)\). The shaded blue 
+region is the hyperplane which contains the vectors \(\phi_1(x)\), 
+\(\phi_2(x)\), …, \(\phi_p(x)\). In other words, the shaded blue region is 
+the column space of \(\phi(x)\).</p>
+
+<p>The predicted values \(\hat{y}\) are given by</p>
+
+<p>[\hat{y} = \phi \hat{w}]</p>
+
+<p>\(\hat{y}\) is a linear combination of columns of \(\phi\), hence \(\hat{y}\) 
+lies in the same hyperplane as \(\phi_1(x)\), \(\phi_2(x)\), …, 
+\(\phi_p(x)\).</p>
+
+<p>\(y - \hat{y}\) is the vector difference of the estimated values 
+\(\hat{y}_i\)’s and the actual observations \(y_i\)’s. The maginitude of this 
+vector is given by</p>
+
+<p>[\lvert y - \hat{y} \rvert = \sum_{i = 1}^{n} (y_i - \hat{y}_i)^2]</p>
+
+<p>The maginitude of \(y - \hat{y}\) is same as the sum of squared error. This 
+maginitude will be minimum when the vector \(y - \hat{y}\) is perpendicular to 
+the hyperplane containing \(\phi_1(x)\), \(\phi_2(x)\), …, \(\phi_p(x)\). In 
+other words, the error will be minimum when \((y - \hat{y}) \perp \phi_1(x)\), 
+\((y - \hat{y}) \perp \phi_2(x)\), …, \((y - \hat{y}) \perp \phi_p(x)\). 
+This can be exressed in terms of dot product as:</p>
+
+<p>[(y - \hat{y})^\intercal \phi_1(x)<br />
+(y - \hat{y})^\intercal \phi_2(x)<br />
+. <br />
+. <br />
+. <br />
+(y - \hat{y})^\intercal \phi_p(x)\]</p>
+
+<p>In matrix form,</p>
+
+<p>[(y - \hat{y})^\intercal \phi = \bar{0}]</p>
+
+<p>Substituting value of \(\hat{y}\),</p>
+
+<p>[(y - \phi \hat{w})^\intercal \phi = (\bar{0})^\intercal<br />
+y^\intercal \phi - \hat{w}^\intercal \phi^\intercal \phi = (\bar{0})^\intercal<br />
+\phi^\intercal y - \phi^\intercal \phi \hat{w} = \bar{0}<br />
+\phi^\intercal \phi \hat{w} = \phi^\intercal y]</p>
+
+<p>Thus,</p>
+
+<p>[\hat{w} = (\phi^\intercal \phi)^{-1} \phi^\intercal y]</p>
+
+<p>This is same result which we obtained earlier.</p>
+
+<p>It is important to note that \(\phi^\intercal \phi\) is invertible only when \(\phi\) 
+has full column rank.</p>
+<h3>Probabilistic Interpretation</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;From the discussion so far, we know that \(y\) is a function of \(\phi(x)\).  But, this function is only approximate, in the sense that it does not give us  the exact value of \(y_i\)’s. We can see in the TV commercials example that  the deviations \(y_1-\hat{y_1}\), \(y_2-\hat{y_2}\), …, \(y_n-\hat{y_n}\)  appear to be random i.e. they do not seem to follow any relation. Let’s denote  this deviation by \(\varepsilon_1\), \(\varepsilon_1\), \(\varepsilon_2\),  …, \(\varepsilon_n\). Then, it is reasonable to assume that each  \(\varepsilon_i\) is a random variable which follows a Gaussian distribution  with mean 0 and variance \(\sigma^2\) denoted as \(\mathcal{N}(0, \sigma^2)\).  Then,&lt;/p&gt;
+</code></pre></div></div>
+
+<p>[y_i - \hat{y_i} = \varepsilon_i<br />
+y_i = \hat{y_i} + \varepsilon_i<br />
+y_i = w^\intercal \phi(x_i) + \varepsilon_i]</p>
+
+<p>This means that each \(y_i\) follows a Gaussian distribution with mean 
+\(\mu = w^\intercal \phi(x_i)\) and variance \(\sigma^2\). This can be denoted 
+as \(y_i ~ \mathcal{N}(\mu, \sigma^2)\). Thus, we can describe this 
+observation as the following probabilistic model</p>
+
+<p>[\begin{align}
+P(y_i|w, x_j, \sigma^2) &amp;= \mathcal{N}(w^\intercal \phi(x_i), \sigma^2)<br />
+&amp;= \frac{1}{\sqrt{2 \pi}\sigma} e^{-\frac{1}{2}(\frac{y_i-w^\intercal\phi(x_i)}{\sigma})^2}
+\end{align}]</p>
+
+<p>\(y\) is a vector of elements \(y_1\), \(y_2\), …, \(y_n\). Moreover, in the 
+dataset \(\mathcal{D}\), picking a sample \((x_i, y_i)\) from the population 
+does not affect the chances of any other point ending up in the dataset. In 
+other words, \(y_1\), \(y_2\), …, \(y_n\) are independent random valiables. 
+Since, each \(y_i \sim \mathcal{N}(\mu, \sigma^2)\), they are indentically 
+distributed. Thus,</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>[P(y</td>
+      <td>w, x, \sigma^2) = \prod_{i = 1}^{n} P(y_i</td>
+      <td>w, x_j, \sigma^2)]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>and</p>
+
+<p>[\mathbb{E}(y(w, x)) = \phi(x) w]</p>
+
+<p>We can formulate the regression problem as:<br />
+Given the dataset \(\mathcal{D}\), find the most likelihood estimate 
+\(\hat{w}_{\tiny{MLE}}\). In other words, find an estimate 
+\(\hat{w}_{\tiny{MLE}}\) which is most likely to produce the \(y\) that we 
+observed in \(\mathcal{D}\).</p>
+
+<p>The likelihood of observing data \(\mathcal{D}\) is denoted by 
+\(L(w \mid \mathcal{D})\). It is give as</p>
+
+<p>[\begin{align}
+L(w \mid \mathcal{D}) &amp;= P(\mathcal{D} \mid w)<br />
+&amp;= P(y \mid x, w, \sigma^2)
+&amp;= \prod_{i = 1}^{n} \frac{1}{\sqrt{2 \pi}\sigma} e^{-\frac{1}{2}(\frac{y_i-w^\intercal\phi(x_i)}{\sigma})^2}
+\end{align}]</p>
+
+<p>Quite tedious expression, huh? Let’s take natural logs of both sides</p>
+
+<p>[\begin{align}
+\ln(L(w \mid \mathcal{D})) &amp;= \ln(\prod_{i = 1}^{n} \frac{1}{\sqrt{2 \pi}\sigma} e^{-\frac{1}{2}(\frac{y_i-w^\intercal\phi(x_i)}{\sigma})^2})<br />
+LL(w \mid \mathcal{D}) &amp;= \sum_{i=1}^{n} \left( ln \left( \frac{1}{\sqrt{2 \pi}\sigma} \right) -\frac{1}{2} \left( \frac{y_i-w^\intercal\phi(x_i)}{\sigma} \right)^2 \right)<br />
+&amp;= \sum_{i=1}^{n} ln \left( \frac{1}{\sqrt{2 \pi \sigma^2}} \right) - \sum_{i=1}^{n} \frac{1}{2 \sigma^2} (y_i-w^\intercal\phi(x_i))^2<br />
+&amp;= -\frac{n}{2} ln(2 \pi \sigma^2) - \frac{1}{2 \sigma^2} \sum_{i=1}^{n} (y_i-w^\intercal\phi(x_i))^2
+\end{align}]</p>
+
+<p>\(LL(w \mid \mathcal{D})\) is called the log likelihood function. Since log is 
+a monotonically increasing function, it preserves the location of maximums and 
+minimums when log is used a transform. Hence, maximizing 
+\(L(w \mid \mathcal{D})\) is equivalent to maximizing 
+\(LL(w \mid \mathcal{D})\). Maximizing log likelihood function instead of 
+likelihood function is known as the log optimization trick. The log likelihood 
+function can also be expressed in terms of sum of squares error 
+\(E(f(\phi(x), w), \mathcal{D})\) as</p>
+
+<p>[\begin{align}
+LL(w \mid \mathcal{D}) &amp;= -\frac{n}{2} ln(2 \pi \sigma^2) - \frac{1}{2 \sigma^2} \sum_{i=1}^{n} (y_i-w^\intercal\phi(x_i))^2<br />
+&amp;= -\frac{n}{2} ln(2 \pi \sigma^2) - \frac{1}{2 \sigma^2} E(f(\phi(x), w), \mathcal{D})
+\end{align}]</p>
+
+<p>Thus, maximizing \(LL(w \mid \mathcal{D})\) is equivalent to minimizing 
+\(E(f(\phi(x), w), \mathcal{D})\) since 
+\(LL(w \mid \mathcal{D}) = - c_1 E(f(\phi(x), w), \mathcal{D}) + c_2\). 
+Therefore, maximizing likelihood function \(L(w \mid \mathcal{D})\) is 
+equivalent to minimizing the sum of squares error 
+\(E(f(\phi(x), w), \mathcal{D})\).</p>
+
+<p>The maximum likelihood estimator is given by</p>
+
+<p>[\hat{w}_{\tiny{MLE}} = \underset{w}{\operatorname{argmax}} P(\mathcal{D} \mid w)]</p>
+
+<p>This can be formulated as a minimization problem</p>
+
+<p>[\hat{w}_{\tiny{MLE}} = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})]</p>
+
+<p>This is the same minimization problem that we solved for getting the least 
+squares solution. Hence, finding maximum likelihood estimator is same as the 
+least squares solution of the linear regression problem. Therefore, most 
+likelihood estimate is</p>
+
+<p>[\hat{w}_{\tiny{MLE}} = (\phi^\intercal \phi)^{-1} \phi^\intercal y]</p>
+<h3>Overfitting</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    &lt;p&gt;Consider the TV commercial example taht we saw while begininning this chapter.  You might have noticed that we conviniently avoided the question, “Why did we  chose to fit a line?”. We could have used some other polynomial of degree  \(n\). Let’s address this with a different example. You can find the source  code for the example that we are about to discuss  &lt;a href="https://github.com/akshaykhadse/DigitalCognitionBook/blob/code/01_linear_regression/02_overfitting.ipynb"&gt;here&lt;/a&gt;.&lt;/p&gt;
+</code></pre></div></div>
+
+<p>We begin by generating some data. To mimic sort of real-world data, we will 
+generate a sine wave \(y = \sin(1.2 \pi x)\) and then add a random noise to 
+this signal. We generate 120 such samples. The following figure shows all 
+these points against the true sine curve. 
+<img src="/DigitalCognitionBook/assets/images/overfitting_data.png" alt="" width="80%" height="80%" /></p>
+
+<p>Next, we reserve 30% of those samples for testing our model while we use rest 
+of the samples for training a polynomial model. Let’s fit a ploynomial with 
+degrees 5 and 25.
+<img src="/DigitalCognitionBook/assets/images/overfitting_polynomial.png" alt="" width="80%" height="80%" />
+You can observe that the ploynomial of degree 5 (shown in blue) is smoother 
+than polynomial with degree 25 (shown in orange). The degree 5 polynomial does 
+not pass through each and every point, it just manages to stay in between the 
+points. The 25 degree polynomial is not smooth, however, it passes through 
+some of the points points especially towards the end of the curve. If we 
+choose a degree high enough, we can find a polynoial which passes through each 
+point. For example, see the following:
+<img src="/DigitalCognitionBook/assets/images/overfitted_curve.png" alt="" width="80%" height="80%" /></p>
+
+<p>But what happens to errors for different polynomial models? Well, let’s plot 
+these
+<img src="/DigitalCognitionBook/assets/images/overfitting_errors.png" alt="" width="80%" height="80%" />
+Observe that the train error and test error both decrease upto polynomial 
+model of degree 5. The test error is minimum for this polynomial. If we fit 
+polynomial models with higher degrees, then the train error keeps on 
+decreasing. However, the test error starts to increase. This means that the 
+training process is begining to give us models that fail to generalise well 
+on unseen data. In other words, the training algorithm is focussing on fitting 
+all training points on the curve instead of finding a curve that generalises 
+the behavior over new data. This is called overfitting. It should be noted 
+that, the aim of training algorithm should not be to give a model that has 0% 
+error. It should concerntrate on finding a sweet spot where both train and 
+test errors are small enough. Thus, we should keep on increasing the model 
+complexity until both the train and test errors decrease. (In this case, 
+degree of polynomial represents the model complexity. More the degree of 
+polynomial, greater the model complexity). We should stop when the test error 
+starts increasing and choose a model which results in minimum test error.</p>
+
+<p>While we’re on the subject, let’s take a look at what happens to the 
+magintudes of the weights of our predicted model. We plot the maginitude (also 
+known as \(\mathcal{L}_2\) norm) of vector \(w\) against the degree of 
+polynomial
+<img src="/DigitalCognitionBook/assets/images/overfitting_weights.png" alt="" width="80%" height="80%" />
+You can see that, as we increase the model complexity, the magnitude of 
+weights goes on increasing. Thus, if we want the model complexity to not 
+increase unnecessarily (to prevent overfitting), we should limit the magintude 
+of weights. This restriction or shrinking of the model weights is called as 
+regularization.</p>
+
+  </body>
+</html>
