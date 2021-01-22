@@ -221,15 +221,15 @@ of observing heads as</p>
 
 <p>However, it is important to note that we do not know the exact probability of 
 getting the heads \(\theta\). \(\hat{\theta}_{\tiny{MLE}}\) is an estimate 
-that maximises the likelihood of observing the outcomes that we already saw. 
+that maximizes the likelihood of observing the outcomes that we already saw. 
 In other words, it the value of the parameter which is the most reasonable 
-explantion for our observations.</p>
+explanation for our observations.</p>
 
-<p>It’s all good for argument sake, but can we prove this theoritically?</p>
+<p>It’s all good for argument sake, but can we prove this theoretically?</p>
 
-<p>We know that tossing a coin 1000 times is a Bernouli trial and the number of 
+<p>We know that tossing a coin 1000 times is a Bernoulli trial and the number of 
 heads (denoted by random variable \(X\)) follows a Binomial distribution. 
-Let’s assume that \(\theta\) is the probablity of getting a head in any single 
+Let’s assume that \(\theta\) is the probability of getting a head in any single 
 coin toss. Thus, probability of getting a tails in single toss will be 
 \((1-\theta)\). Hence, the probability of getting \(k\) heads in \(n\) coin 
 tosses is given by</p>
@@ -246,7 +246,7 @@ tosses is given by</p>
 &amp;=  \underset{\theta \in [0,1]}{\operatorname{argmax}} {}^{n}C_{k} \; \theta^{k}(1-\theta)^{n-k}
 \end{align}\]
 
-<p>Instead of maximizing the likelihood, we will maximise the log of likelihood. 
+<p>Instead of maximizing the likelihood, we will maximize the log of likelihood. 
 Since log is a monotonically increasing function, it preserves the location of 
 maximas and minimas of the original function</p>
 
@@ -286,7 +286,7 @@ LL(\theta \mid X = k) &amp;= \log (L(\theta \mid X = k))\\
 
 <h3 id="continuous-random-variables">Continuous Random Variables</h3>
 
-<p>If the stochatistc process has a continous random variable as its outcome, 
+<p>If the stochastic process has a continuos random variable as its outcome, 
 then the situation is similar, with one important difference. We can no longer 
 talk about the probability that we observed \(O\) given \(\theta\) because in 
 the continuous case \(P(O \mid \theta)=0\). Without getting into 
@@ -298,7 +298,7 @@ technicalities, the basic idea is as follows:</p>
 
 \[L(\theta \mid O)=f(O \mid \theta)\]
 
-<p>Our use of the pdf instead of actual probability intutuively makes sense 
+<p>Our use of the pdf instead of actual probability intuitively makes sense 
 because if we compare probabilities of getting a small set of outcome e.g. 
 \(P(300 \leq O \leq 301 \mid \theta)\) instead of a particular outcome e.g. 
 \(P(O = 300 \mid \theta)\), then we can see that the probabilities are 
@@ -316,7 +316,7 @@ are independent of each other i.e drawing a sample from the population does
 not affect the chances of getting any other sample. Each random variable is 
 governed by a distribution which follows the probability mass function (in 
 discrete random variables) or probability density function (in case of 
-continous random variabes) \(f_{\theta}(x_i) = f(x_i \mid \theta)\). This 
+continuos random variables) \(f_{\theta}(x_i) = f(x_i \mid \theta)\). This 
 means that the distribution is governed by a parameter \(\theta\). Such 
 random variables are said to be independent and identically distributed 
 (i.i.d).</p>
@@ -325,7 +325,7 @@ random variables are said to be independent and identically distributed
 Then, the probability of making this observation is given by a function 
 \(f_{\theta}(x_1, x_2, ..., x_n)\). This is known as joint probability mass 
 function (for discrete random variables) and probability mass function (for 
-continous random variables). It is given as</p>
+continuos random variables). It is given as</p>
 
 \[\begin{align}
 f_{\theta}(x_1, x_2, ..., x_n) &amp;= f(x_1, x_2, ..., x_n \mid \theta)\\
@@ -341,23 +341,23 @@ L(\theta \mid \mathcal{D}) &amp;= L(\theta \mid x_1, x_2, ..., x_n)\\
 &amp;= \prod^{i=1}{n} f_{theta}(x_i)
 \end{align}\]
 
-<p>Thus the maximum likihood extimator of \(\theta\) is given by</p>
+<p>Thus the maximum likelihood estimator of \(\theta\) is given by</p>
 
 \[\begin{align}
 \hat{\theta}_{\tiny{MLE}} &amp;= \underset{\theta}{\operatorname{argmax}} L(\theta \mid \mathcal{D})\\
 &amp;= \underset{\theta}{\operatorname{argmax}} \prod^{i=1}{n} f_{theta}(x_i)
 \end{align}\]
 <h2><a name="pt2ch1-Entropy"></a>Entropy</h2>
-        <p>The entropy of a random variable is measure of its uncertainity. Some texts 
+        <p>The entropy of a random variable is measure of its uncertainty. Some texts 
 also refer it as a measure of information content.</p>
 
-<p>But, what is the meaning of uncertainity or information content? Let’s 
+<p>But, what is the meaning of uncertainty or information content? Let’s 
 understand with an example
 <img src="/DigitalCognitionBook/assets/images/entropy_example.svg" alt="Entropy example" width="80%" height="80%" />
 We have two random alphabet generator machines which generate one character 
 from the set \(\{A, B, C, D\}\). The probabilities of generating each alphabet 
 is, however, different for both machines. For machine 1, each alphabet is 
-equaly likely to be generated i.e. \(P(A) = P(B) = P(C) = P(D) = \frac{1}{4}\). 
+equally likely to be generated i.e. \(P(A) = P(B) = P(C) = P(D) = \frac{1}{4}\). 
 However, for machine 2, probabilities of getting each alphabet is 
 \(P(A) = \frac{1}{2}\), \(P(B) = \frac{1}{4}\), \(P(C) = \frac{1}{8}\) and 
 \(P(D) = \frac{1}{8}\).</p>
@@ -371,7 +371,7 @@ then would he give the alphabet to you. Given the absurd situation you have
 found yourselves in, you would like to get over with it by asking minimum 
 number of questions to the operator.</p>
 
-<p>Consider the case where you ask operator to generate an aplhabet from machine 
+<p>Consider the case where you ask operator to generate an alphabet from machine 
 1.
 <img src="/DigitalCognitionBook/assets/images/entropy_machine1.svg" alt="Questions machine 1" width="50%" height="50%" />
 You ask the first question to operator, “Is the alphabet A or B?”. The 
@@ -388,7 +388,7 @@ you would need to ask 200 questions i.e. on an average 2 questions per trial.</p
 <p>Let’s see what happens for machine 2. Since, probability of getting A is 
 highest, you should start asking questions from A and then move to alphabets 
 with lower probability of occurrence. This will ensure that if you repeat the 
-trial sevel times, you will be asking minimum number of question.
+trial several times, you will be asking minimum number of question.
 <img src="/DigitalCognitionBook/assets/images/entropy_machine2.svg" alt="Questions machine 2" width="50%" height="50%" />
 You ask the operator to get a new alphabet from the machine and start with a 
 question “Is the alphabet A?”. The operator responds with a no. Then, you ask, 
@@ -407,8 +407,8 @@ need to ask is
 
 <p>The more uncertain the outcome of an experiment is, more number of questions 
 you would ask to guess the outcome correctly. Thus the average number of 
-questions you ask is the measure of uncertainity. This can also be termed as 
-information content. If the probability of occurence of an event is \(p\) then 
+questions you ask is the measure of uncertainty. This can also be termed as 
+information content. If the probability of occurrence of an event is \(p\) then 
 you would more or less (not exactly always) be asking \(-\log_{2}(p)\) 
 questions. So, the average number of questions that you would be asking is 
 entropy.</p>
@@ -420,26 +420,26 @@ of \(X\) is formally defined as:</p>
 \[H(X) = - \sum_{i=1}^{n} P(x_i) \log_{2}(P(x_i))\]
 
 <p>Of all the distributions with variance \(\sigma^2\), Gaussian distribution has 
-the highest entropy. It models the highest uncertainity. Hence, it usually 
+the highest entropy. It models the highest uncertainty. Hence, it usually 
 chosen to model unknown random variables as it encapsulates the worst case 
-scenario of maximum uncertainity. This is the reason we chose 
+scenario of maximum uncertainty. This is the reason we chose 
 \(\mathcal{N}(0, \sigma^2)\) to model the error \(\varepsilon\).</p>
 <h2><a name="pt2ch1-MaximumA-PosterioriEstimate"></a>Maximum A-Posteriori Estimate</h2>
-        <p>Consider the exmaple of coin toss which we saw earlier. Let’s say Suresh gets himself a new coin from the mint. The coin has one face heads and other tails. Since coin is brand new, he believes that the coin is fair. So, getting heads and tails is equally likely i.e. \(P(H) = P(T) = 0.5\).</p>
+        <p>Consider the example of coin toss which we saw earlier. Let’s say Suresh gets himself a new coin from the mint. The coin has one face heads and other tails. Since coin is brand new, he believes that the coin is fair. So, getting heads and tails is equally likely i.e. \(P(H) = P(T) = 0.5\).</p>
 
-<p>Now, Suresh tosses the coins four times and he obeserves heads all four times. What is the porbability of getting heads in the next toss? Well, if we were looking at the maximum likelihood estimate, then the answer would be \(\hat{P}(H) = 4/4 = 1\).</p>
+<p>Now, Suresh tosses the coins four times and he observes heads all four times. What is the probability of getting heads in the next toss? Well, if we were looking at the maximum likelihood estimate, then the answer would be \(\hat{P}(H) = 4/4 = 1\).</p>
 
-<p>Does this mean that tails is improbable? We know that it would be practically possible to get heads all the time only if both the faces of the coin were heads (and we were in the movie Sholay). This is clearly not true for our coin, it has heads on one face and tails on the other. This means that Suresh’s belif that the coin is fair is not correct. However, it does not mean that the tails is improbabe. So, is there a way through which Suresh can update his belif that \(\hat{p} = 0.5\) by incorpating the information he recieved by tossing coin four times?</p>
+<p>Does this mean that tails is improbable? We know that it would be practically possible to get heads all the time only if both the faces of the coin were heads. This is clearly not true for our coin, it has heads on one face and tails on the other. This means that Suresh’s belief that the coin is fair is not correct. However, it does not mean that the tails is improbable. So, is there a way through which Suresh can update his belief that \(\hat{p} = 0.5\) by incorporating the information he received by tossing coin four times?</p>
 
-<p>Yes. Let me introduce you to Bayesian Inference. Let’s say that the \(X\) is governed by a distribution whose parameter is \(\theta\). Under the Bayesian Inference, you assume that \(\theta\) in itself is another random variable. The you can incorporate your belif about \(\theta\) via assuming a probability distribution that governs \(\theta\). We will represent this distribution via a PDF or PMF \(g(\theta)\). The probability distribution of \(\theta\) which incorporates your belif \(g(\theta)\) is called prior because this denotes your belif about \(\theta\) prior to observing evidence or data \(\mathcal{D}\).</p>
+<p>Yes. Let me introduce you to Bayesian Inference. Let’s say that the \(X\) is governed by a distribution whose parameter is \(\theta\). Under the Bayesian Inference, you assume that \(\theta\) in itself is another random variable. The you can incorporate your belief about \(\theta\) via assuming a probability distribution that governs \(\theta\). We will represent this distribution via a PDF or PMF \(g(\theta)\). The probability distribution of \(\theta\) which incorporates your belief \(g(\theta)\) is called prior because this denotes your belief about \(\theta\) prior to observing evidence or data \(\mathcal{D}\).</p>
 
-<p>As we saw with Suresh’s coin toss example, we may encounter some evidence or data \(\mathcal{D}\) which can be used to update our original belif. This evidence can be encorporated in a distribution denoted by \(f(x \mid \theta)\). No fancy names for this one.</p>
+<p>As we saw with Suresh’s coin toss example, we may encounter some evidence or data \(\mathcal{D}\) which can be used to update our original belief. This evidence can be incorporated in a distribution denoted by \(f(x \mid \theta)\). No fancy names for this one.</p>
 
 <p>Then we can conclude the following from the Bayes’ rule</p>
 
 \[f(\theta \mid x) = \frac{f(x \mid \theta) g(\theta)}{\int_{\Theta} f(x \mid t) g(t) dt}\]
 
-<p>where \(\Theta\) is the domain of function \(g(\theta)\). The set of values over which a function is defined is called domain of that function. In other words, \(\Theta\) deontes range of \(\theta\) over which function \(g(\theta)\) is defined.</p>
+<p>where \(\Theta\) is the domain of function \(g(\theta)\). The set of values over which a function is defined is called domain of that function. In other words, \(\Theta\) denotes range of \(\theta\) over which function \(g(\theta)\) is defined.</p>
 
 <p>In this equation, the denominator does not depend on the \(\theta\). Therefore, it is constant. We can see that maximizing \(f(\theta \mid x)\) is same as maximizing \(f(x \mid \theta) g(\theta)\). Thus we can write</p>
 
@@ -447,7 +447,7 @@ scenario of maximum uncertainity. This is the reason we chose
 
 <p>In this equation \(f(\theta \mid x)\) is known as posterior distribution of \(\theta\).</p>
 
-<p>The maximum a-posteriori estimate is the value of \(\theta\) which maximises the posterior distribution of \(\theta\). This is given as</p>
+<p>The maximum a-posteriori estimate is the value of \(\theta\) which maximizes the posterior distribution of \(\theta\). This is given as</p>
 
 \[\begin{align}
 \hat{\theta}_{MAP} &amp;= \underset{\theta}{\operatorname{argmax}} f(\theta \mid x)\\
@@ -456,15 +456,15 @@ scenario of maximum uncertainity. This is the reason we chose
 
 <p>Observe that the MAP estimate of \(\theta\)  coincides with the ML estimate when the prior \(g\) is uniform (that is, a constant function).</p>
 
-<p>Let’s get back to Suresh. Coin toss is an example of Binomial distribution. Let probability of getting heads in a single coin toss be \(p\). The probablity of observing \(h\) heads in \(n\) tosses is given by</p>
+<p>Let’s get back to Suresh. Coin toss is an example of Binomial distribution. Let probability of getting heads in a single coin toss be \(p\). The probability of observing \(h\) heads in \(n\) tosses is given by</p>
 
 \[f(h \mid p) = {}^{n}C_{h} p^h (1-p)^{n-h}\]
 
-<p>Assume that \(p\) is also a random variable. We will model the prior of \(p\) as a Beta distribution (beacuse Beta is the conjugate prior of Binomial. This will be discussed later when explaining conjugate priors) with parameter \(\alpha = 10\) and \(\beta = 10\). This is shown in the following figure</p>
+<p>Assume that \(p\) is also a random variable. We will model the prior of \(p\) as a Beta distribution (because Beta is the conjugate prior of Binomial. This will be discussed later when explaining conjugate priors) with parameter \(\alpha = 10\) and \(\beta = 10\). This is shown in the following figure</p>
 
 <p><img src="/DigitalCognitionBook/assets/images/beta_distribution_10_10.png" alt="" width="80%" height="80%" /></p>
 
-<p>Observe that this mound shaped curve has peak at \(x = 0.5\) and looks quite similar to the Gassian distribution. Thus, this distribution incorporates the Suresh’s belief that the coin is fair. Thus,</p>
+<p>Observe that this mound shaped curve has peak at \(x = 0.5\) and looks quite similar to the Gaussian distribution. Thus, this distribution incorporates the Suresh’s belief that the coin is fair. Thus,</p>
 
 \[g(p) = \frac{p^{\alpha-1} (1-p)^{\beta-1}}{\mathcal{B}(\alpha,\beta)}\]
 
@@ -488,9 +488,9 @@ f(p \mid h) &amp;= \frac{f(h \mid p) g(p)}{ \int_{0}^{1} f(h \mid p) g(p) dp} \\
 &amp;= \frac{\alpha + h -1}{\alpha + \beta + n -2}
 \end{align}\]
 
-<p>So, for Suresh, the MAP estimate of probability is \(\frac{10+4-1}{10+10+4-2} = 0.6\)</p>
+<p>So, for Suresh, the MAP estimate of probability of getting heads is \(\frac{10+4-1}{10+10+4-2} = 0.6\)</p>
 
-<p>Please notice that the probabilty of getting heads is 0.6 as opposed to 1 which we found out from MLE. MAP estimate is much more reasonable than the MLE and it incorporates our original belif that the coin is fair. This also explains that the tails is not improbable.</p>
+<p>Please notice that the probability of getting heads is 0.6 as opposed to 1 which we found out from MLE. This explains that the tails is not improbable. Thus, MAP estimate is much more reasonable than the MLE because it incorporates our original belief that the coin is fair.</p>
 </div>
 
     </main>

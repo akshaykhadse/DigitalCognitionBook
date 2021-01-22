@@ -242,7 +242,7 @@ $$\phi_j(1.12) = sin(1.12).</p>
 
 <p>\(i^{th}\) row of this matrix is represented as \(\phi(x_i)\). Similarly, 
 \(i^{th}\) column of this matrix can be represented as \(\phi_i(x)\). This is 
-also known as \(i^{th}\) feature of the datset \(\mathcal{D}\).</p>
+also known as \(i^{th}\) feature of the dataset \(\mathcal{D}\).</p>
 
 <p>Let’s also define a \(n \times 1\) matrix \(y\) as</p>
 
@@ -297,7 +297,7 @@ w_p
 
 <p>The \(y\) is linear combination of columns of matrix \(\phi\) because 
 \(i^{th}\) column of \(\phi\) is multiplied by \(w_i\). But this does not mean 
-that linear regression is naievely linear. We can inject nonlinearities via 
+that linear regression is naively linear. We can inject non-linearities via 
 the features/basis functions \(\phi_i\)s. For example, we could have used a 
 function \(\phi(x_i) = x_i^2\) in the TV commercial example. To summarize, 
 \(y\) is linear in \(\phi\) and \(w\) but it may or may not be linear with 
@@ -319,16 +319,16 @@ functions i.e. \(f\) is a linear function.</p>
 <p>When we say best predictor, we must have a measure which we use to determine 
 goodness of a function. The error function \(E\) is a measure of deviation of 
 predicted value \(\hat{y}\) from the observed value \(y\). Smaller the error, 
-better the predictior function \(f\). The error \(E\) is a function of \(f\) 
+better the prediction function \(f\). The error \(E\) is a function of \(f\) 
 and data \(\mathcal{D}\). A common error function is Sum of Squared Error. 
 There are different types of linear regression based on what error function is 
-minimized and what classes of fuctions are considered.</p>
+minimized and what classes of functions are considered.</p>
 
 <h3 id="linear-regression-problem">Linear Regression Problem</h3>
 <p>If we consider the class of linear functions for \(f\), then 
 \(f(\phi(x), w) = \phi(x)w\). We can rewrite the above problem as:</p>
 
-<p>Determine parameters \(w\) for the function \(f(\phi(x), w)\) which minimises 
+<p>Determine parameters \(w\) for the function \(f(\phi(x), w)\) which minimizes 
 the error function \(E(f(\phi(x), w), \mathcal{D})\).</p>
 
 \[\hat{w} = \underset{w}{\operatorname{argmin}} E(f(\phi(x), w), \mathcal{D})\]
@@ -394,17 +394,17 @@ lies in the same hyperplane as \(\phi_1(x)\), \(\phi_2(x)\), …,
 \(\phi_p(x)\).</p>
 
 <p>\(y - \hat{y}\) is the vector difference of the estimated values 
-\(\hat{y}_i\)’s and the actual observations \(y_i\)’s. The maginitude of this 
+\(\hat{y}_i\)’s and the actual observations \(y_i\)’s. The magnitude of this 
 vector is given by</p>
 
 \[\lvert y - \hat{y} \rvert = \sum_{i = 1}^{n} (y_i - \hat{y}_i)^2\]
 
-<p>The maginitude of \(y - \hat{y}\) is same as the sum of squared error. This 
-maginitude will be minimum when the vector \(y - \hat{y}\) is perpendicular to 
+<p>The magnitude of \(y - \hat{y}\) is same as the sum of squared error. This 
+magnitude will be minimum when the vector \(y - \hat{y}\) is perpendicular to 
 the hyperplane containing \(\phi_1(x)\), \(\phi_2(x)\), …, \(\phi_p(x)\). In 
 other words, the error will be minimum when \((y - \hat{y}) \perp \phi_1(x)\), 
 \((y - \hat{y}) \perp \phi_2(x)\), …, \((y - \hat{y}) \perp \phi_p(x)\). 
-This can be exressed in terms of dot product as:</p>
+This can be expressed in terms of dot product as:</p>
 
 \[(y - \hat{y})^\intercal \phi_1(x)\\
 (y - \hat{y})^\intercal \phi_2(x)\\
@@ -461,8 +461,8 @@ P(y_i|w, x_j, \sigma^2) &amp;= \mathcal{N}(w^\intercal \phi(x_i), \sigma^2)\\
 <p>\(y\) is a vector of elements \(y_1\), \(y_2\), …, \(y_n\). Moreover, in the 
 dataset \(\mathcal{D}\), picking a sample \((x_i, y_i)\) from the population 
 does not affect the chances of any other point ending up in the dataset. In 
-other words, \(y_1\), \(y_2\), …, \(y_n\) are independent random valiables. 
-Since, each \(y_i \sim \mathcal{N}(\mu, \sigma^2)\), they are indentically 
+other words, \(y_1\), \(y_2\), …, \(y_n\) are independent random variables. 
+Since, each \(y_i \sim \mathcal{N}(\mu, \sigma^2)\), they are identically 
 distributed. Thus,</p>
 
 \[P(y|w, x, \sigma^2) = \prod_{i = 1}^{n} P(y_i|w, x_j, \sigma^2)\]
@@ -531,8 +531,8 @@ likelihood estimate is</p>
 
 \[\hat{w}_{\tiny{MLE}} = (\phi^\intercal \phi)^{-1} \phi^\intercal y\]
 <h2><a name="pt3ch1-Overfitting"></a>Overfitting</h2>
-        <p>Consider the TV commercial example taht we saw while begininning this chapter. 
-You might have noticed that we conviniently avoided the question, “Why did we 
+        <p>Consider the TV commercial example that we saw while beginning this chapter. 
+You might have noticed that we conveniently avoided the question, “Why did we 
 chose to fit a line?”. We could have used some other polynomial of degree 
 \(n\). Let’s address this with a different example. You can find the source 
 code for the example that we are about to discuss 
@@ -545,15 +545,15 @@ these points against the true sine curve.
 <img src="/DigitalCognitionBook/assets/images/overfitting_data.png" alt="" width="80%" height="80%" /></p>
 
 <p>Next, we reserve 30% of those samples for testing our model while we use rest 
-of the samples for training a polynomial model. Let’s fit a ploynomial with 
+of the samples for training a polynomial model. Let’s fit a polynomial with 
 degrees 5 and 25.
 <img src="/DigitalCognitionBook/assets/images/overfitting_polynomial.png" alt="" width="80%" height="80%" />
-You can observe that the ploynomial of degree 5 (shown in blue) is smoother 
+You can observe that the polynomial of degree 5 (shown in blue) is smoother 
 than polynomial with degree 25 (shown in orange). The degree 5 polynomial does 
 not pass through each and every point, it just manages to stay in between the 
 points. The 25 degree polynomial is not smooth, however, it passes through 
 some of the points points especially towards the end of the curve. If we 
-choose a degree high enough, we can find a polynoial which passes through each 
+choose a degree high enough, we can find a polynomial which passes through each 
 point. For example, see the following:
 <img src="/DigitalCognitionBook/assets/images/overfitted_curve.png" alt="" width="80%" height="80%" /></p>
 
@@ -564,12 +564,12 @@ Observe that the train error and test error both decrease upto polynomial
 model of degree 5. The test error is minimum for this polynomial. If we fit 
 polynomial models with higher degrees, then the train error keeps on 
 decreasing. However, the test error starts to increase. This means that the 
-training process is begining to give us models that fail to generalise well 
+training process is beginning to give us models that fail to generalize well 
 on unseen data. In other words, the training algorithm is focussing on fitting 
-all training points on the curve instead of finding a curve that generalises 
+all training points on the curve instead of finding a curve that generalizes 
 the behavior over new data. This is called overfitting. It should be noted 
 that, the aim of training algorithm should not be to give a model that has 0% 
-error. It should concerntrate on finding a sweet spot where both train and 
+error. It should concentrate on finding a sweet spot where both train and 
 test errors are small enough. Thus, we should keep on increasing the model 
 complexity until both the train and test errors decrease. (In this case, 
 degree of polynomial represents the model complexity. More the degree of 
@@ -577,13 +577,13 @@ polynomial, greater the model complexity). We should stop when the test error
 starts increasing and choose a model which results in minimum test error.</p>
 
 <p>While we’re on the subject, let’s take a look at what happens to the 
-magintudes of the weights of our predicted model. We plot the maginitude (also 
+magnitudes of the weights of our predicted model. We plot the magnitude (also 
 known as \(\mathcal{L}_2\) norm) of vector \(w\) against the degree of 
 polynomial
 <img src="/DigitalCognitionBook/assets/images/overfitting_weights.png" alt="" width="80%" height="80%" />
 You can see that, as we increase the model complexity, the magnitude of 
 weights goes on increasing. Thus, if we want the model complexity to not 
-increase unnecessarily (to prevent overfitting), we should limit the magintude 
+increase unnecessarily (to prevent overfitting), we should limit the magnitude 
 of weights. This restriction or shrinking of the model weights is called as 
 regularization.</p>
 </div>
